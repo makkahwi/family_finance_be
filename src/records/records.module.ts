@@ -1,8 +1,8 @@
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Record } from './entities/record.entity';
-import { Module } from '@nestjs/common';
-import { RecordsService } from './records.service';
 import { RecordsController } from './records.controller';
+import { RecordsService } from './records.service';
 
 @Module({
   imports: [TypeOrmModule.forFeature([Record])],

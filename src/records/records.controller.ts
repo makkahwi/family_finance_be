@@ -1,24 +1,19 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { RecordsService } from './records.service';
 import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
+import { RecordsService } from './records.service';
 
 @Controller('records')
 export class RecordsController {
   constructor(private readonly recordsService: RecordsService) {}
-
-  @Post()
-  create(@Body() createRecordDto: CreateRecordDto) {
-    return this.recordsService.create(createRecordDto);
-  }
 
   @Get()
   findAll() {
@@ -28,6 +23,11 @@ export class RecordsController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recordsService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createRecordDto: CreateRecordDto) {
+    return this.recordsService.create(createRecordDto);
   }
 
   @Patch(':id')
