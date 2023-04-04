@@ -6,11 +6,8 @@ export class Transfer {
   id: number;
 
   @Column()
-  name: string;
+  amount: number;
 
   @Column()
-  currency: string;
-
-  @Column()
-  description: string;
+  exchangeRate: number;
 }

@@ -1,5 +1,5 @@
 export class CreateTransferDto {
   name: string;
-  currency: string;
-  description: string;
+  amount: number;
+  exchangeRate: number;
 }
