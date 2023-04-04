@@ -5,6 +5,8 @@ import { CreateTransferDto } from './dto/create-transfer.dto';
 import { UpdateTransferDto } from './dto/update-transfer.dto';
 import { Transfer } from './entities/transfer.entity';
 
+const relations = ['from', 'to'];
+
 @Injectable()
 export class TransfersService {
   constructor(
@@ -13,7 +15,7 @@ export class TransfersService {
   ) {}
 
   findAll() {
-    return this.transfersRepository.find({ relations: ['account'] });
+    return this.transfersRepository.find({ relations });
   }
 
   findOne(id: number): Promise<Transfer> {

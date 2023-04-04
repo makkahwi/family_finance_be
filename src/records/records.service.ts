@@ -5,6 +5,8 @@ import { CreateRecordDto } from './dto/create-record.dto';
 import { UpdateRecordDto } from './dto/update-record.dto';
 import { Record } from './entities/record.entity';
 
+const relations = ['category'];
+
 @Injectable()
 export class RecordsService {
   constructor(
@@ -13,7 +15,7 @@ export class RecordsService {
   ) {}
 
   findAll() {
-    return this.recordsRepository.find({ relations: ['category'] });
+    return this.recordsRepository.find({ relations });
   }
 
   findOne(id: number): Promise<Record> {

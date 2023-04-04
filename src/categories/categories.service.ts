@@ -5,6 +5,8 @@ import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
 import { Category } from './entities/category.entity';
 
+const relations = ['account', 'records'];
+
 @Injectable()
 export class CategoriesService {
   constructor(
@@ -14,7 +16,7 @@ export class CategoriesService {
 
   findAll() {
     return this.categoriesRepository.find({
-      relations: ['account', 'records'],
+      relations,
     });
   }
 

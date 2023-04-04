@@ -5,6 +5,8 @@ import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import { Role } from './entities/role.entity';
 
+const relations = ['users'];
+
 @Injectable()
 export class RolesService {
   constructor(
@@ -13,7 +15,7 @@ export class RolesService {
   ) {}
 
   findAll() {
-    return this.rolesRepository.find({ relations: ['users'] });
+    return this.rolesRepository.find({ relations });
   }
 
   findOne(id: number): Promise<Role> {

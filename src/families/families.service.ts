@@ -5,6 +5,8 @@ import { CreateFamilyDto } from './dto/create-family.dto';
 import { UpdateFamilyDto } from './dto/update-family.dto';
 import { Family } from './entities/family.entity';
 
+const relations = ['users', 'accounts'];
+
 @Injectable()
 export class FamiliesService {
   constructor(
@@ -13,7 +15,7 @@ export class FamiliesService {
   ) {}
 
   findAll() {
-    return this.familiesRepository.find({ relations: ['users'] });
+    return this.familiesRepository.find({ relations });
   }
 
   findOne(id: number): Promise<Family> {
