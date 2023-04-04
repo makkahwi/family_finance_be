@@ -7,4 +7,10 @@ export class Account {
 
   @Column()
   name: string;
+
+  @Column()
+  currency: string;
+
+  @Column()
+  description: string;
 }
