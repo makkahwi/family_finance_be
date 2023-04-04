@@ -1,24 +1,19 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from '@nestjs/common';
-import { TransfersService } from './transfers.service';
 import { CreateTransferDto } from './dto/create-transfer.dto';
 import { UpdateTransferDto } from './dto/update-transfer.dto';
+import { TransfersService } from './transfers.service';
 
 @Controller('transfers')
 export class TransfersController {
   constructor(private readonly transfersService: TransfersService) {}
-
-  @Post()
-  create(@Body() createTransferDto: CreateTransferDto) {
-    return this.transfersService.create(createTransferDto);
-  }
 
   @Get()
   findAll() {
@@ -28,6 +23,11 @@ export class TransfersController {
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.transfersService.findOne(+id);
+  }
+
+  @Post()
+  create(@Body() createTransferDto: CreateTransferDto) {
+    return this.transfersService.create(createTransferDto);
   }
 
   @Patch(':id')

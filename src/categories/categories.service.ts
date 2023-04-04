@@ -1,10 +1,9 @@
-import { DataSource } from 'typeorm';
-import { Category } from './entities/category.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Repository } from 'typeorm';
+import { Category } from './entities/category.entity';
 
 @Injectable()
 export class CategoriesService {
@@ -13,16 +12,16 @@ export class CategoriesService {
     private categoriesRepository: Repository<Category>,
   ) {}
 
-  create(createCategoryDto: CreateCategoryDto) {
-    return this.categoriesRepository.save(createCategoryDto);
-  }
-
   findAll() {
     return this.categoriesRepository.find();
   }
 
   findOne(id: number): Promise<Category> {
     return this.categoriesRepository.findOneBy({ id });
+  }
+
+  create(createCategoryDto: CreateCategoryDto) {
+    return this.categoriesRepository.save(createCategoryDto);
   }
 
   update(id: number, updateCategoryDto: UpdateCategoryDto) {

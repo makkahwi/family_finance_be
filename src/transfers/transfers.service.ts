@@ -1,10 +1,9 @@
-import { DataSource } from 'typeorm';
-import { Transfer } from './entities/transfer.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateTransferDto } from './dto/create-transfer.dto';
 import { UpdateTransferDto } from './dto/update-transfer.dto';
-import { Repository } from 'typeorm';
+import { Transfer } from './entities/transfer.entity';
 
 @Injectable()
 export class TransfersService {
@@ -13,16 +12,16 @@ export class TransfersService {
     private transfersRepository: Repository<Transfer>,
   ) {}
 
-  create(createTransferDto: CreateTransferDto) {
-    return this.transfersRepository.save(createTransferDto);
-  }
-
   findAll() {
     return this.transfersRepository.find();
   }
 
   findOne(id: number): Promise<Transfer> {
     return this.transfersRepository.findOneBy({ id });
+  }
+
+  create(createTransferDto: CreateTransferDto) {
+    return this.transfersRepository.save(createTransferDto);
   }
 
   update(id: number, updateTransferDto: UpdateTransferDto) {
