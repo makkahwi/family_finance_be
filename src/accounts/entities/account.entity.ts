@@ -22,9 +22,13 @@ export class Account {
   @JoinColumn({ name: 'family' })
   family: Family;
 
-  @OneToMany(() => Transfer, (transfer) => transfer.account)
-  @JoinColumn({ name: 'transfers' })
-  transfers: Transfer[];
+  @OneToMany(() => Transfer, (transfer) => transfer.from)
+  @JoinColumn({ name: 'transfersFrom' })
+  transfersFrom: Transfer[];
+
+  @OneToMany(() => Transfer, (transfer) => transfer.to)
+  @JoinColumn({ name: 'transfersTo' })
+  transfersTo: Transfer[];
 
   @OneToMany(() => Category, (category) => category.account)
   @JoinColumn({ name: 'categories' })

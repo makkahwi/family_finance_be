@@ -18,7 +18,13 @@ export class Transfer {
   @Column()
   exchangeRate: number;
 
-  @ManyToOne(() => Account, (account) => account.transfers, { cascade: true })
-  @JoinColumn({ name: 'account' })
-  account: Account;
+  @ManyToOne(() => Account, (account) => account.transfersFrom, {
+    cascade: true,
+  })
+  @JoinColumn({ name: 'from' })
+  from: Account;
+
+  @ManyToOne(() => Account, (account) => account.transfersTo, { cascade: true })
+  @JoinColumn({ name: 'to' })
+  to: Account;
 }
