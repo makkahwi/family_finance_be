@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Role } from '../../roles/entities/role.entity';
 
 @Entity()
 export class User {
@@ -8,10 +15,14 @@ export class User {
   @Column()
   name: string;
 
+  @ManyToOne(() => Role, (role) => role.users, { cascade: true })
+  @JoinColumn({ name: 'role' })
+  role: Role;
+
   @Column()
   email: string;
 
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Column()
