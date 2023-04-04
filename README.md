@@ -1,5 +1,18 @@
 # Family Finance BE
 
+## To Do
+
+- UUid
+- Filter find all
+- Find all Pagination
+- Create, update & delete many
+- Files storage
+- Authentication
+- Authorization
+- Notifications Generator
+- Emailing Service
+- PDF Generator
+
 ## Technical Features
 
 ### Models
