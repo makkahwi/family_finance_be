@@ -1,10 +1,9 @@
-import { DataSource } from 'typeorm';
-import { User } from './entities/user.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Repository } from 'typeorm';
+import { User } from './entities/user.entity';
 
 @Injectable()
 export class UsersService {
@@ -13,16 +12,16 @@ export class UsersService {
     private usersRepository: Repository<User>,
   ) {}
 
-  create(createUserDto: CreateUserDto) {
-    return this.usersRepository.save(createUserDto);
-  }
-
   findAll() {
     return this.usersRepository.find({ relations: ['role'] });
   }
 
   findOne(id: number): Promise<User> {
     return this.usersRepository.findOneBy({ id });
+  }
+
+  create(createUserDto: CreateUserDto) {
+    return this.usersRepository.save(createUserDto);
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
