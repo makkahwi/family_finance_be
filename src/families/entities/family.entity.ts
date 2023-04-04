@@ -2,7 +2,7 @@ import {
   Column,
   Entity,
   JoinColumn,
-  ManyToOne,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { User } from '../../users/entities/user.entity';
@@ -15,7 +15,7 @@ export class Family {
   @Column()
   name: string;
 
-  @ManyToOne(() => User, (user) => user.family)
+  @OneToMany(() => User, (user) => user.family)
   @JoinColumn({ name: 'users' })
   users: User[];
 }
