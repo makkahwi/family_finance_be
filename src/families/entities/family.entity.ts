@@ -7,13 +7,4 @@ export class Family {
 
   @Column()
   name: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  familyname: string;
-
-  @Column()
-  password: string;
 }
