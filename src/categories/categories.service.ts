@@ -21,7 +21,7 @@ export class CategoriesService {
   }
 
   findOne(id: number): Promise<Category> {
-    return this.categoriesRepository.findOneBy({ id });
+    return this.categoriesRepository.findOne({ where: { id }, relations });
   }
 
   create(createCategoryDto: CreateCategoryDto) {

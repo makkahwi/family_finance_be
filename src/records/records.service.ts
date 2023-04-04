@@ -19,7 +19,7 @@ export class RecordsService {
   }
 
   findOne(id: number): Promise<Record> {
-    return this.recordsRepository.findOneBy({ id });
+    return this.recordsRepository.findOne({ where: { id }, relations });
   }
 
   create(createRecordDto: CreateRecordDto) {

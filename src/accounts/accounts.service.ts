@@ -21,7 +21,7 @@ export class AccountsService {
   }
 
   findOne(id: number): Promise<Account> {
-    return this.accountsRepository.findOneBy({ id });
+    return this.accountsRepository.findOne({ where: { id }, relations });
   }
 
   create(createAccountDto: CreateAccountDto) {

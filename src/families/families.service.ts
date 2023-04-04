@@ -19,7 +19,7 @@ export class FamiliesService {
   }
 
   findOne(id: number): Promise<Family> {
-    return this.familiesRepository.findOneBy({ id });
+    return this.familiesRepository.findOne({ where: { id }, relations });
   }
 
   create(createFamilyDto: CreateFamilyDto) {

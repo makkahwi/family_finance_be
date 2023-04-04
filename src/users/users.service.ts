@@ -19,7 +19,7 @@ export class UsersService {
   }
 
   findOne(id: number): Promise<User> {
-    return this.usersRepository.findOneBy({ id });
+    return this.usersRepository.findOne({ where: { id }, relations });
   }
 
   create(createUserDto: CreateUserDto) {

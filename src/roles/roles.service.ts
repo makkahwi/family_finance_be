@@ -19,7 +19,7 @@ export class RolesService {
   }
 
   findOne(id: number): Promise<Role> {
-    return this.rolesRepository.findOneBy({ id });
+    return this.rolesRepository.findOne({ where: { id }, relations });
   }
 
   create(createRoleDto: CreateRoleDto) {

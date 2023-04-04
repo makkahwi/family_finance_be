@@ -19,7 +19,7 @@ export class TransfersService {
   }
 
   findOne(id: number): Promise<Transfer> {
-    return this.transfersRepository.findOneBy({ id });
+    return this.transfersRepository.findOne({ where: { id }, relations });
   }
 
   create(createTransferDto: CreateTransferDto) {
