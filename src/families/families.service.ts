@@ -1,10 +1,9 @@
-import { DataSource } from 'typeorm';
-import { Family } from './entities/family.entity';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Repository } from 'typeorm';
 import { CreateFamilyDto } from './dto/create-family.dto';
 import { UpdateFamilyDto } from './dto/update-family.dto';
-import { Repository } from 'typeorm';
+import { Family } from './entities/family.entity';
 
 @Injectable()
 export class FamiliesService {
@@ -13,16 +12,16 @@ export class FamiliesService {
     private familiesRepository: Repository<Family>,
   ) {}
 
-  create(createFamilyDto: CreateFamilyDto) {
-    return this.familiesRepository.save(createFamilyDto);
-  }
-
   findAll() {
     return this.familiesRepository.find({ relations: ['users'] });
   }
 
   findOne(id: number): Promise<Family> {
     return this.familiesRepository.findOneBy({ id });
+  }
+
+  create(createFamilyDto: CreateFamilyDto) {
+    return this.familiesRepository.save(createFamilyDto);
   }
 
   update(id: number, updateFamilyDto: UpdateFamilyDto) {
