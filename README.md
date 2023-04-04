@@ -9,6 +9,10 @@
 - Files storage
 - Authentication
 - Authorization
+- Handle error cases
+  - ID not found
+  - Missing required prop
+  - Unauthorized
 - Notifications Generator
 - Emailing Service
 - PDF Generator
