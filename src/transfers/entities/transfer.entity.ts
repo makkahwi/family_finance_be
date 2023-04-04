@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Account } from '../../accounts/entities/account.entity';
 
 @Entity()
 export class Transfer {
@@ -10,4 +17,8 @@ export class Transfer {
 
   @Column()
   exchangeRate: number;
+
+  @ManyToOne(() => Account, (account) => account.transfers, { cascade: true })
+  @JoinColumn({ name: 'account' })
+  account: Account;
 }
