@@ -4,26 +4,67 @@
 
 ### Models
 
-- user
+#### user
+
+- props
   - name
   - username
   - email
   - password
-- role
+- relations
+  - role
+  - family
+
+#### role
+
+- props
   - name
-- family
+- relations
+  - users
+
+#### family
+
+- props
   - name
-- account
+- relations
+  - users
+  - accounts
+
+#### account
+
+- props
   - name
   - currency
   - description
-- transfer
+- relations
+  - family
+  - transfersFrom
+  - transfersTo
+  - categories
+
+#### transfer
+
+- props
   - amount
   - exchange rate
-- category
+- relations
+  - from
+  - to
+
+#### category
+
+- props
   - name
   - type
-- record
+- relations
+  - account
+  - records
+
+#### record
+
+- props
   - value
   - note
   - timestamp
+- relations
+  - category
