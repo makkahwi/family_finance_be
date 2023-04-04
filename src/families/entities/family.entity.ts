@@ -20,7 +20,7 @@ export class Family {
   @JoinColumn({ name: 'users' })
   users: User[];
 
-  @OneToMany(() => Account, (user) => user.family)
+  @OneToMany(() => Account, (account) => account.family)
   @JoinColumn({ name: 'accounts' })
   accounts: Account[];
 }
