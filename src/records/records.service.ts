@@ -18,7 +18,7 @@ export class RecordsService {
   }
 
   findAll() {
-    return this.recordsRepository.find();
+    return this.recordsRepository.find({ relations: ['category'] });
   }
 
   findOne(id: number): Promise<Record> {

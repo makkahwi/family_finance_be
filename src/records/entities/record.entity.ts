@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { Category } from '../../categories/entities/category.entity';
 
 @Entity()
 export class Record {
@@ -13,4 +20,8 @@ export class Record {
 
   @Column()
   timestamp: string;
+
+  @ManyToOne(() => Category, (account) => account.records, { cascade: true })
+  @JoinColumn({ name: 'category' })
+  category: Category;
 }
