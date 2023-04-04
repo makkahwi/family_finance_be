@@ -13,7 +13,7 @@ export class TransfersService {
   ) {}
 
   findAll() {
-    return this.transfersRepository.find();
+    return this.transfersRepository.find({ relations: ['account'] });
   }
 
   findOne(id: number): Promise<Transfer> {
