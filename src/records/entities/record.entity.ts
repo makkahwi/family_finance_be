@@ -6,5 +6,11 @@ export class Record {
   id: number;
 
   @Column()
-  name: string;
+  value: number;
+
+  @Column()
+  note: string;
+
+  @Column()
+  timestamp: string;
 }

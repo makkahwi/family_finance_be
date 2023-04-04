@@ -1,3 +1,5 @@
 export class CreateRecordDto {
-  name: string;
+  value: number;
+  note: string;
+  timestamp: string;
 }
