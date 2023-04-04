@@ -4,11 +4,13 @@ import { AccountsModule } from './accounts/accounts.module';
 import { config } from './config/data-source';
 import { FamiliesModule } from './families/families.module';
 import { RolesModule } from './roles/roles.module';
+import { TransfersModule } from './transfers/transfers.module';
 import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     AccountsModule,
+    TransfersModule,
     UsersModule,
     FamiliesModule,
     RolesModule,
