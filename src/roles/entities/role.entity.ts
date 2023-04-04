@@ -7,13 +7,4 @@ export class Role {
 
   @Column()
   name: string;
-
-  @Column()
-  email: string;
-
-  @Column()
-  rolename: string;
-
-  @Column()
-  password: string;
 }
