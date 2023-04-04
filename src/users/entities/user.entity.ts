@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Role } from '../../roles/entities/role.entity';
+import { Family } from '../../families/entities/family.entity';
 
 @Entity()
 export class User {
@@ -18,6 +19,10 @@ export class User {
   @ManyToOne(() => Role, (role) => role.users, { cascade: true })
   @JoinColumn({ name: 'role' })
   role: Role;
+
+  @ManyToOne(() => Family, (family) => family.users, { cascade: true })
+  @JoinColumn({ name: 'family' })
+  family: Family;
 
   @Column()
   email: string;

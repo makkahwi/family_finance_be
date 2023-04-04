@@ -13,7 +13,7 @@ export class UsersService {
   ) {}
 
   findAll() {
-    return this.usersRepository.find({ relations: ['role'] });
+    return this.usersRepository.find({ relations: ['role', 'family'] });
   }
 
   findOne(id: number): Promise<User> {

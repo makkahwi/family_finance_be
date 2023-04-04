@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Family {
@@ -7,4 +14,8 @@ export class Family {
 
   @Column()
   name: string;
+
+  @ManyToOne(() => User, (user) => user.family)
+  @JoinColumn({ name: 'users' })
+  users: User[];
 }

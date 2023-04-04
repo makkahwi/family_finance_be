@@ -18,7 +18,7 @@ export class FamiliesService {
   }
 
   findAll() {
-    return this.familiesRepository.find();
+    return this.familiesRepository.find({ relations: ['users'] });
   }
 
   findOne(id: number): Promise<Family> {
