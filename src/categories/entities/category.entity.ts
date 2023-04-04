@@ -9,8 +9,5 @@ export class Category {
   name: string;
 
   @Column()
-  currency: string;
-
-  @Column()
-  description: string;
+  type: string;
 }
