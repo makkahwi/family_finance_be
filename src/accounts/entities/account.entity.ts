@@ -1,4 +1,11 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { Family } from '../../families/entities/family.entity';
 
 @Entity()
 export class Account {
@@ -7,6 +14,10 @@ export class Account {
 
   @Column()
   name: string;
+
+  @ManyToOne(() => Family, (family) => family.accounts, { cascade: true })
+  @JoinColumn({ name: 'family' })
+  family: Family;
 
   @Column()
   currency: string;
