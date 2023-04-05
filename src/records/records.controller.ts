@@ -25,13 +25,13 @@ export class RecordsController {
   }
 
   @Post()
-  create(@Body() createRecordDto: RecordDto) {
-    return this.recordsService.create(createRecordDto);
+  create(@Body() recordDto: RecordDto) {
+    return this.recordsService.create(recordDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecordDto: RecordDto) {
-    return this.recordsService.update(+id, updateRecordDto);
+  update(@Param('id') id: string, @Body() recordDto: RecordDto) {
+    return this.recordsService.update(+id, recordDto);
   }
 
   @Delete(':id')

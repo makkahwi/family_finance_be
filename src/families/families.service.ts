@@ -21,12 +21,12 @@ export class FamiliesService {
     return this.familiesRepository.findOne({ where: { id }, relations });
   }
 
-  create(createFamilyDto: FamilyDto) {
-    return this.familiesRepository.save(createFamilyDto);
+  create(familyDto: FamilyDto) {
+    return this.familiesRepository.save(familyDto);
   }
 
-  update(id: number, updateFamilyDto: FamilyDto) {
-    return this.familiesRepository.update(id, updateFamilyDto);
+  update(id: number, familyDto: FamilyDto) {
+    return this.familiesRepository.update(id, familyDto);
   }
 
   async remove(id: number): Promise<void> {

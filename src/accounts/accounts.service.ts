@@ -23,12 +23,12 @@ export class AccountsService {
     return this.accountsRepository.findOne({ where: { id }, relations });
   }
 
-  create(createAccountDto: AccountDto) {
-    return this.accountsRepository.save(createAccountDto);
+  create(accountDto: AccountDto) {
+    return this.accountsRepository.save(accountDto);
   }
 
-  update(id: number, updateAccountDto: AccountDto) {
-    return this.accountsRepository.update(id, updateAccountDto);
+  update(id: number, accountDto: AccountDto) {
+    return this.accountsRepository.update(id, accountDto);
   }
 
   async remove(id: number): Promise<void> {

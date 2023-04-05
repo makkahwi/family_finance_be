@@ -25,13 +25,13 @@ export class CategoriesController {
   }
 
   @Post()
-  create(@Body() createCategoryDto: CategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+  create(@Body() categoryDto: CategoryDto) {
+    return this.categoriesService.create(categoryDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCategoryDto: CategoryDto) {
-    return this.categoriesService.update(+id, updateCategoryDto);
+  update(@Param('id') id: string, @Body() categoryDto: CategoryDto) {
+    return this.categoriesService.update(+id, categoryDto);
   }
 
   @Delete(':id')

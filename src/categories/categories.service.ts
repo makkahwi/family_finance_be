@@ -23,12 +23,12 @@ export class CategoriesService {
     return this.categoriesRepository.findOne({ where: { id }, relations });
   }
 
-  create(createCategoryDto: CategoryDto) {
-    return this.categoriesRepository.save(createCategoryDto);
+  create(categoryDto: CategoryDto) {
+    return this.categoriesRepository.save(categoryDto);
   }
 
-  update(id: number, updateCategoryDto: CategoryDto) {
-    return this.categoriesRepository.update(id, updateCategoryDto);
+  update(id: number, categoryDto: CategoryDto) {
+    return this.categoriesRepository.update(id, categoryDto);
   }
 
   async remove(id: number): Promise<void> {

@@ -25,13 +25,13 @@ export class FamiliesController {
   }
 
   @Post()
-  create(@Body() createFamilyDto: FamilyDto) {
-    return this.familiesService.create(createFamilyDto);
+  create(@Body() familyDto: FamilyDto) {
+    return this.familiesService.create(familyDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFamilyDto: FamilyDto) {
-    return this.familiesService.update(+id, updateFamilyDto);
+  update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
+    return this.familiesService.update(+id, familyDto);
   }
 
   @Delete(':id')

@@ -21,12 +21,12 @@ export class RecordsService {
     return this.recordsRepository.findOne({ where: { id }, relations });
   }
 
-  create(createRecordDto: RecordDto) {
-    return this.recordsRepository.save(createRecordDto);
+  create(recordDto: RecordDto) {
+    return this.recordsRepository.save(recordDto);
   }
 
-  update(id: number, updateRecordDto: RecordDto) {
-    return this.recordsRepository.update(id, updateRecordDto);
+  update(id: number, recordDto: RecordDto) {
+    return this.recordsRepository.update(id, recordDto);
   }
 
   async remove(id: number): Promise<void> {

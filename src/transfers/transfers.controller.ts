@@ -25,13 +25,13 @@ export class TransfersController {
   }
 
   @Post()
-  create(@Body() TransferDto: TransferDto) {
-    return this.transfersService.create(TransferDto);
+  create(@Body() transferDto: TransferDto) {
+    return this.transfersService.create(transferDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() TransferDto: TransferDto) {
-    return this.transfersService.update(+id, TransferDto);
+  update(@Param('id') id: string, @Body() transferDto: TransferDto) {
+    return this.transfersService.update(+id, transferDto);
   }
 
   @Delete(':id')

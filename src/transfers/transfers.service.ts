@@ -21,12 +21,12 @@ export class TransfersService {
     return this.transfersRepository.findOne({ where: { id }, relations });
   }
 
-  create(TransferDto: TransferDto) {
-    return this.transfersRepository.save(TransferDto);
+  create(transferDto: TransferDto) {
+    return this.transfersRepository.save(transferDto);
   }
 
-  update(id: number, TransferDto: TransferDto) {
-    return this.transfersRepository.update(id, TransferDto);
+  update(id: number, transferDto: TransferDto) {
+    return this.transfersRepository.update(id, transferDto);
   }
 
   async remove(id: number): Promise<void> {

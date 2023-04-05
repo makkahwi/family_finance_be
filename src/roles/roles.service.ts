@@ -21,12 +21,12 @@ export class RolesService {
     return this.rolesRepository.findOne({ where: { id }, relations });
   }
 
-  create(RoleDto: RoleDto) {
-    return this.rolesRepository.save(RoleDto);
+  create(roleDto: RoleDto) {
+    return this.rolesRepository.save(roleDto);
   }
 
-  update(id: number, RoleDto: RoleDto) {
-    return this.rolesRepository.update(id, RoleDto);
+  update(id: number, roleDto: RoleDto) {
+    return this.rolesRepository.update(id, roleDto);
   }
 
   async remove(id: number): Promise<void> {

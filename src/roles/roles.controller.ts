@@ -25,13 +25,13 @@ export class RolesController {
   }
 
   @Post()
-  create(@Body() RoleDto: RoleDto) {
-    return this.rolesService.create(RoleDto);
+  create(@Body() roleDto: RoleDto) {
+    return this.rolesService.create(roleDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() RoleDto: RoleDto) {
-    return this.rolesService.update(+id, RoleDto);
+  update(@Param('id') id: string, @Body() roleDto: RoleDto) {
+    return this.rolesService.update(+id, roleDto);
   }
 
   @Delete(':id')

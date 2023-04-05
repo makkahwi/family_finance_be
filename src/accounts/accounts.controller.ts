@@ -25,13 +25,13 @@ export class AccountsController {
   }
 
   @Post()
-  create(@Body() createAccountDto: AccountDto) {
-    return this.accountsService.create(createAccountDto);
+  create(@Body() accountDto: AccountDto) {
+    return this.accountsService.create(accountDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccountDto: AccountDto) {
-    return this.accountsService.update(+id, updateAccountDto);
+  update(@Param('id') id: string, @Body() accountDto: AccountDto) {
+    return this.accountsService.update(+id, accountDto);
   }
 
   @Delete(':id')
