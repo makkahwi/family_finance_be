@@ -20,6 +20,13 @@
 
 ## Technical Features
 
+### Apps
+
+- Swagger
+  - Page URL: /
+  - JSON URL: /api-json
+  - Yaml URL: /api-yaml
+
 ### Models
 
 #### user
