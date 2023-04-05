@@ -2,7 +2,7 @@
 
 ## To Do
 
-- Filter find all
+- Filter & sort find all
 - Find all Pagination
 - Create, update & delete many
 - Files storage
@@ -23,6 +23,7 @@
 - Add seed data to models
 - Add content localization
 - Split swagger sections by model
+- Audit Logs (Activities tracking)
 - Emailing Service
 - PDF Generator
 
