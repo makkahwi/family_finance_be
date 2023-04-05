@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+
 import { AccountsModule } from './accounts/accounts.module';
 import { CategoriesModule } from './categories/categories.module';
 import { config } from './config/data-source';
@@ -11,13 +12,13 @@ import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
-    RecordsModule,
-    AccountsModule,
-    CategoriesModule,
-    TransfersModule,
+    RolesModule,
     UsersModule,
     FamiliesModule,
-    RolesModule,
+    AccountsModule,
+    TransfersModule,
+    CategoriesModule,
+    RecordsModule,
     TypeOrmModule.forRoot({
       ...config,
       autoLoadEntities: true,
