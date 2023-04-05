@@ -7,8 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateTransferDto } from './dto/create-transfer.dto';
-import { UpdateTransferDto } from './dto/update-transfer.dto';
+import { TransferDto } from './dto/transfer.dto';
 import { TransfersService } from './transfers.service';
 
 @Controller('transfers')
@@ -26,16 +25,13 @@ export class TransfersController {
   }
 
   @Post()
-  create(@Body() createTransferDto: CreateTransferDto) {
-    return this.transfersService.create(createTransferDto);
+  create(@Body() TransferDto: TransferDto) {
+    return this.transfersService.create(TransferDto);
   }
 
   @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateTransferDto: UpdateTransferDto,
-  ) {
-    return this.transfersService.update(+id, updateTransferDto);
+  update(@Param('id') id: string, @Body() TransferDto: TransferDto) {
+    return this.transfersService.update(+id, TransferDto);
   }
 
   @Delete(':id')

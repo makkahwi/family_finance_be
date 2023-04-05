@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateTransferDto } from './dto/create-transfer.dto';
-import { UpdateTransferDto } from './dto/update-transfer.dto';
+import { TransferDto } from './dto/transfer.dto';
 import { Transfer } from './entities/transfer.entity';
 
 const relations = ['from', 'to'];
@@ -22,12 +21,12 @@ export class TransfersService {
     return this.transfersRepository.findOne({ where: { id }, relations });
   }
 
-  create(createTransferDto: CreateTransferDto) {
-    return this.transfersRepository.save(createTransferDto);
+  create(TransferDto: TransferDto) {
+    return this.transfersRepository.save(TransferDto);
   }
 
-  update(id: number, updateTransferDto: UpdateTransferDto) {
-    return this.transfersRepository.update(id, updateTransferDto);
+  update(id: number, TransferDto: TransferDto) {
+    return this.transfersRepository.update(id, TransferDto);
   }
 
   async remove(id: number): Promise<void> {
