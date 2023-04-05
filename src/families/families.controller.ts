@@ -7,8 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateFamilyDto } from './dto/create-family.dto';
-import { UpdateFamilyDto } from './dto/update-family.dto';
+import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
 
 @Controller('families')
@@ -26,12 +25,12 @@ export class FamiliesController {
   }
 
   @Post()
-  create(@Body() createFamilyDto: CreateFamilyDto) {
+  create(@Body() createFamilyDto: FamilyDto) {
     return this.familiesService.create(createFamilyDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateFamilyDto: UpdateFamilyDto) {
+  update(@Param('id') id: string, @Body() updateFamilyDto: FamilyDto) {
     return this.familiesService.update(+id, updateFamilyDto);
   }
 
