@@ -2,8 +2,6 @@
 
 ## To Do
 
-- Create & update body validations
-- UUid
 - Filter find all
 - Find all Pagination
 - Create, update & delete many
