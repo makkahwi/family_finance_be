@@ -12,7 +12,7 @@ import { Category } from '../../categories/entities/category.entity';
 
 @Entity()
 export class Account {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()

@@ -11,7 +11,7 @@ import { Record } from '../../records/entities/record.entity';
 
 @Entity()
 export class Category {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()

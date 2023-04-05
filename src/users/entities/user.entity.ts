@@ -10,7 +10,7 @@ import { Family } from '../../families/entities/family.entity';
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
