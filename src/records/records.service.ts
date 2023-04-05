@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateRecordDto } from './dto/create-record.dto';
-import { UpdateRecordDto } from './dto/update-record.dto';
+import { RecordDto } from './dto/record.dto';
 import { Record } from './entities/record.entity';
 
 const relations = ['category'];
@@ -22,11 +21,11 @@ export class RecordsService {
     return this.recordsRepository.findOne({ where: { id }, relations });
   }
 
-  create(createRecordDto: CreateRecordDto) {
+  create(createRecordDto: RecordDto) {
     return this.recordsRepository.save(createRecordDto);
   }
 
-  update(id: number, updateRecordDto: UpdateRecordDto) {
+  update(id: number, updateRecordDto: RecordDto) {
     return this.recordsRepository.update(id, updateRecordDto);
   }
 

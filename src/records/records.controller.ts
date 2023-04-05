@@ -7,8 +7,7 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { CreateRecordDto } from './dto/create-record.dto';
-import { UpdateRecordDto } from './dto/update-record.dto';
+import { RecordDto } from './dto/record.dto';
 import { RecordsService } from './records.service';
 
 @Controller('records')
@@ -26,12 +25,12 @@ export class RecordsController {
   }
 
   @Post()
-  create(@Body() createRecordDto: CreateRecordDto) {
+  create(@Body() createRecordDto: RecordDto) {
     return this.recordsService.create(createRecordDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateRecordDto: UpdateRecordDto) {
+  update(@Param('id') id: string, @Body() updateRecordDto: RecordDto) {
     return this.recordsService.update(+id, updateRecordDto);
   }
 
