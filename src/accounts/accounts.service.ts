@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { CreateAccountDto } from './dto/create-account.dto';
-import { UpdateAccountDto } from './dto/update-account.dto';
+import { AccountDto } from './dto/account.dto';
 import { Account } from './entities/account.entity';
 
 const relations = ['family', 'transfersFrom', 'transfersTo', 'categories'];
@@ -24,11 +23,11 @@ export class AccountsService {
     return this.accountsRepository.findOne({ where: { id }, relations });
   }
 
-  create(createAccountDto: CreateAccountDto) {
+  create(createAccountDto: AccountDto) {
     return this.accountsRepository.save(createAccountDto);
   }
 
-  update(id: number, updateAccountDto: UpdateAccountDto) {
+  update(id: number, updateAccountDto: AccountDto) {
     return this.accountsRepository.update(id, updateAccountDto);
   }
 

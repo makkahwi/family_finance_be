@@ -8,8 +8,7 @@ import {
   Post,
 } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
-import { CreateAccountDto } from './dto/create-account.dto';
-import { UpdateAccountDto } from './dto/update-account.dto';
+import { AccountDto } from './dto/account.dto';
 
 @Controller('accounts')
 export class AccountsController {
@@ -26,12 +25,12 @@ export class AccountsController {
   }
 
   @Post()
-  create(@Body() createAccountDto: CreateAccountDto) {
+  create(@Body() createAccountDto: AccountDto) {
     return this.accountsService.create(createAccountDto);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateAccountDto: UpdateAccountDto) {
+  update(@Param('id') id: string, @Body() updateAccountDto: AccountDto) {
     return this.accountsService.update(+id, updateAccountDto);
   }
 
