@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
+  Put,
   Post,
 } from '@nestjs/common';
 import { TransferDto } from './dto/transfer.dto';
@@ -29,7 +29,7 @@ export class TransfersController {
     return this.transfersService.create(transferDto);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() transferDto: TransferDto) {
     return this.transfersService.update(+id, transferDto);
   }

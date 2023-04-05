@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
+  Put,
   Post,
 } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
@@ -29,7 +29,7 @@ export class AccountsController {
     return this.accountsService.create(accountDto);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
     return this.accountsService.update(+id, accountDto);
   }

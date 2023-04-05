@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
+  Put,
   Post,
 } from '@nestjs/common';
 import { FamilyDto } from './dto/family.dto';
@@ -29,7 +29,7 @@ export class FamiliesController {
     return this.familiesService.create(familyDto);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
     return this.familiesService.update(+id, familyDto);
   }

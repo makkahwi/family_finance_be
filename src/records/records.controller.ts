@@ -4,7 +4,7 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
+  Put,
   Post,
 } from '@nestjs/common';
 import { RecordDto } from './dto/record.dto';
@@ -29,7 +29,7 @@ export class RecordsController {
     return this.recordsService.create(recordDto);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
     return this.recordsService.update(+id, recordDto);
   }
