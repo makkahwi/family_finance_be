@@ -10,6 +10,12 @@
 - Files storage
 - Authentication
 - Authorization
+- "Mine" APIs
+  - GetAll Mine
+  - Get Mine
+  - Create Mine
+  - Update Mine
+  - Delete Mine
 - Handle error cases
   - ID not found
   - Missing required prop
