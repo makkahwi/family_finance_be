@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   Post,
+  Put,
+  Query,
 } from '@nestjs/common';
+
 import { TransferDto } from './dto/transfer.dto';
 import { TransfersService } from './transfers.service';
 
@@ -15,8 +17,8 @@ export class TransfersController {
   constructor(private readonly transfersService: TransfersService) {}
 
   @Get()
-  findAll() {
-    return this.transfersService.findAll();
+  findAll(@Query() params) {
+    return this.transfersService.findAll(params);
   }
 
   @Get(':id')

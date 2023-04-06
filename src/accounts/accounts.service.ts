@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { AccountDto } from './dto/account.dto';
 import { Account } from './entities/account.entity';
 
@@ -13,9 +14,10 @@ export class AccountsService {
     private accountsRepository: Repository<Account>,
   ) {}
 
-  findAll() {
+  findAll(where) {
     return this.accountsRepository.find({
       relations,
+      where,
     });
   }
 

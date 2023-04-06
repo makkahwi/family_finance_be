@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   Post,
+  Put,
+  Query,
 } from '@nestjs/common';
+
 import { CategoriesService } from './categories.service';
 import { CategoryDto } from './dto/category.dto';
 
@@ -15,8 +17,8 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
 
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  findAll(@Query() params) {
+    return this.categoriesService.findAll(params);
   }
 
   @Get(':id')

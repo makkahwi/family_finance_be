@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   Post,
+  Put,
+  Query,
 } from '@nestjs/common';
+
 import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
@@ -15,8 +17,8 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  findAll() {
-    return this.usersService.findAll();
+  findAll(@Query() params) {
+    return this.usersService.findAll(params);
   }
 
   @Get(':id')

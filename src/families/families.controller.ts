@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   Post,
+  Put,
+  Query,
 } from '@nestjs/common';
+
 import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
 
@@ -15,8 +17,8 @@ export class FamiliesController {
   constructor(private readonly familiesService: FamiliesService) {}
 
   @Get()
-  findAll() {
-    return this.familiesService.findAll();
+  findAll(@Query() params) {
+    return this.familiesService.findAll(params);
   }
 
   @Get(':id')

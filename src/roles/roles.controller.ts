@@ -4,9 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Put,
   Post,
+  Put,
+  Query,
 } from '@nestjs/common';
+
 import { RoleDto } from './dto/role.dto';
 import { RolesService } from './roles.service';
 
@@ -15,8 +17,8 @@ export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
 
   @Get()
-  findAll() {
-    return this.rolesService.findAll();
+  findAll(@Query() params) {
+    return this.rolesService.findAll(params);
   }
 
   @Get(':id')

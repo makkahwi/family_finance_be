@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { CategoryDto } from './dto/category.dto';
 import { Category } from './entities/category.entity';
 
@@ -13,9 +14,10 @@ export class CategoriesService {
     private categoriesRepository: Repository<Category>,
   ) {}
 
-  findAll() {
+  findAll(where) {
     return this.categoriesRepository.find({
       relations,
+      where,
     });
   }
 

@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { TransferDto } from './dto/transfer.dto';
 import { Transfer } from './entities/transfer.entity';
 
@@ -13,8 +14,8 @@ export class TransfersService {
     private transfersRepository: Repository<Transfer>,
   ) {}
 
-  findAll() {
-    return this.transfersRepository.find({ relations });
+  findAll(where) {
+    return this.transfersRepository.find({ relations, where });
   }
 
   findOne(id: number): Promise<Transfer> {

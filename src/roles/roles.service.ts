@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { RoleDto } from './dto/role.dto';
 import { Role } from './entities/role.entity';
 
@@ -13,8 +14,8 @@ export class RolesService {
     private rolesRepository: Repository<Role>,
   ) {}
 
-  findAll() {
-    return this.rolesRepository.find({ relations });
+  findAll(where) {
+    return this.rolesRepository.find({ relations, where });
   }
 
   findOne(id: number): Promise<Role> {

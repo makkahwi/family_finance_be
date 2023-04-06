@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+
 import { FamilyDto } from './dto/family.dto';
 import { Family } from './entities/family.entity';
 
@@ -13,8 +14,8 @@ export class FamiliesService {
     private familiesRepository: Repository<Family>,
   ) {}
 
-  findAll() {
-    return this.familiesRepository.find({ relations });
+  findAll(where) {
+    return this.familiesRepository.find({ relations, where });
   }
 
   findOne(id: number): Promise<Family> {
