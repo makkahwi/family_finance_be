@@ -1,44 +1,60 @@
-export const findRequest = ({ query, relations }) => ({
-  relations,
-  where: rebuildParams(query),
-});
+const buildSortQuery = (query) => {
+  if (query) {
+    const keys = Object.keys(query).filter((key) => key.includes('_sort'));
 
-export const rebuildParams = (where) => {
+    return keys?.reduce((final, current) => {
+      const prop = current.replace('_sort', '');
+      return { ...final, [prop]: query[current] };
+    }, {});
+  } else {
+    return {};
+  }
+};
+
+const buildWhereQuery = (query) => {
   let finalWhere = {};
 
-  if (where) {
-    const ors = Object.keys(where).filter(
-      (key) => typeof where[key] === 'object',
-    );
+  if (query) {
+    const keys = Object.keys(query).filter((key) => !key.includes('_sort'));
 
-    const nonOrs = Object.keys(where)
-      .filter((key) => typeof where[key] !== 'object')
-      .reduce(
-        (final, current) => ({ ...final, [current]: where[current] }),
-        {},
-      );
+    if (keys.length) {
+      const ors = keys?.filter((key) => typeof query[key] === 'object');
 
-    const cartesian = (...args) =>
-      args.reduce(
-        (a, b) =>
-          a
-            .map((x) => b.map((y) => x.concat([y])))
-            .reduce((acc, t) => acc.concat(t), []),
-        [[]],
-      );
+      const nonOrs = keys
+        ?.filter((key) => typeof query[key] !== 'object')
+        .reduce(
+          (final, current) => ({ ...final, [current]: query[current] }),
+          {},
+        );
 
-    if (ors.length > 0) {
-      finalWhere = cartesian(
-        ...ors.map((key) => where[key].map((value) => ({ [key]: value }))),
-      ).map((row) =>
-        row.reduce((final, current) => ({ ...final, ...current }), {
-          ...nonOrs,
-        }),
-      );
-    } else {
-      finalWhere = where;
+      const cartesian = (...args) =>
+        args.reduce(
+          (a, b) =>
+            a
+              .map((x) => b.map((y) => x.concat([y])))
+              .reduce((acc, t) => acc.concat(t), []),
+          [[]],
+        );
+
+      if (ors.length > 0) {
+        finalWhere = cartesian(
+          ...ors.map((key) => query[key].map((value) => ({ [key]: value }))),
+        ).map((row) =>
+          row.reduce((final, current) => ({ ...final, ...current }), {
+            ...nonOrs,
+          }),
+        );
+      } else if (nonOrs) {
+        finalWhere = nonOrs;
+      }
     }
   }
 
   return finalWhere;
 };
+
+export const findRequest = ({ query, relations }) => ({
+  relations,
+  where: buildWhereQuery(query),
+  order: buildSortQuery(query),
+});
