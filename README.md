@@ -2,7 +2,6 @@
 
 ## To Do
 
-- Filter & sort find all
 - Find all Pagination
 - Create, update & delete many
 - Files storage
