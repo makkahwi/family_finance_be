@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
+import { rebuildParams } from '../utils/functions';
 import { RecordDto } from './dto/record.dto';
 import { Record } from './entities/record.entity';
 
@@ -15,7 +16,10 @@ export class RecordsService {
   ) {}
 
   findAll(where) {
-    return this.recordsRepository.find({ relations, where });
+    return this.recordsRepository.find({
+      relations,
+      where: rebuildParams(where),
+    });
   }
 
   findOne(id: number): Promise<Record> {
