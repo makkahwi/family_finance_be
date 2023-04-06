@@ -1,3 +1,8 @@
+export const findRequest = ({ query, relations }) => ({
+  relations,
+  where: rebuildParams(query),
+});
+
 export const rebuildParams = (where) => {
   let finalWhere = {};
 

@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { rebuildParams } from '../utils/functions';
+import { findRequest } from '../utils/functions';
 import { CategoryDto } from './dto/category.dto';
 import { Category } from './entities/category.entity';
 
@@ -15,11 +15,8 @@ export class CategoriesService {
     private categoriesRepository: Repository<Category>,
   ) {}
 
-  findAll(where) {
-    return this.categoriesRepository.find({
-      relations,
-      where: rebuildParams(where),
-    });
+  findAll(query) {
+    return this.categoriesRepository.find(findRequest({ relations, query }));
   }
 
   findOne(id: number): Promise<Category> {
