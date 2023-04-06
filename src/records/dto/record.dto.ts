@@ -1,13 +1,11 @@
-import { IsInt, IsNotEmpty, Length, Min } from 'class-validator';
+import { IsNotEmpty, Length, Min } from 'class-validator';
 
 export class RecordDto {
   @IsNotEmpty()
-  @IsInt()
   @Min(0)
   value: number;
 
-  @IsNotEmpty()
-  @Length(3, 30)
+  @Length(0, 30)
   note: string;
 
   @IsNotEmpty()
