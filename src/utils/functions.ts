@@ -1,3 +1,55 @@
+import {
+  Equal,
+  ILike,
+  LessThan,
+  LessThanOrEqual,
+  MoreThan,
+  MoreThanOrEqual,
+  Not,
+} from 'typeorm';
+
+const postfixes = [
+  {
+    name: 'Sort',
+    postfix: '_sort',
+  },
+  {
+    name: 'Bigger Than',
+    postfix: '_bt',
+    operator: MoreThan,
+  },
+  {
+    name: 'Bigger Than Or Equal',
+    postfix: '_bte',
+    operator: MoreThanOrEqual,
+  },
+  {
+    name: 'Smaller Than',
+    postfix: '_st',
+    operator: LessThan,
+  },
+  {
+    name: 'Smaller Than Or Equal',
+    postfix: '_ste',
+    operator: LessThanOrEqual,
+  },
+  {
+    name: 'Equal',
+    postfix: '_eq',
+    operator: Equal,
+  },
+  {
+    name: 'Not Equal',
+    postfix: '_ne',
+    operator: Not,
+  },
+  {
+    name: 'Like',
+    postfix: '_lk',
+    operator: ILike,
+  },
+];
+
 const buildSortQuery = (query) => {
   if (query) {
     const keys = Object.keys(query).filter((key) => key.includes('_sort'));
