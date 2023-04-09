@@ -54,7 +54,7 @@ const buildSortQuery = (query) => {
   }
 };
 
-const buildWherePostFixQueries = (query, postfix, operator) => {
+const buildWherePostfixQueries = (query, postfix, operator) => {
   let where = {};
 
   const keys = Object.keys(query).filter((key) => key.endsWith(postfix));
@@ -93,7 +93,7 @@ const buildWhereQuery = (query) => {
     postfixes.forEach(({ postfix, operator }) => {
       finalWhere = {
         ...finalWhere,
-        ...buildWherePostFixQueries(query, postfix, operator),
+        ...buildWherePostfixQueries(query, postfix, operator),
       };
     });
   }
