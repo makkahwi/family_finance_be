@@ -11,7 +11,7 @@ import { Account } from '../../accounts/entities/account.entity';
 @Entity()
 export class Family {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;

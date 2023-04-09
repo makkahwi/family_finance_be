@@ -19,7 +19,7 @@ export class AccountsService {
     return this.accountsRepository.find(findRequest({ relations, query }));
   }
 
-  findOne(id: number): Promise<Account> {
+  findOne(id: string): Promise<Account> {
     return this.accountsRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class AccountsService {
     return this.accountsRepository.save(accountDto);
   }
 
-  update(id: number, accountDto: AccountDto) {
+  update(id: string, accountDto: AccountDto) {
     return this.accountsRepository.update(id, accountDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.accountsRepository.delete(id);
   }
 }

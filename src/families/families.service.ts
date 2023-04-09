@@ -19,7 +19,7 @@ export class FamiliesService {
     return this.familiesRepository.find(findRequest({ relations, query }));
   }
 
-  findOne(id: number): Promise<Family> {
+  findOne(id: string): Promise<Family> {
     return this.familiesRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class FamiliesService {
     return this.familiesRepository.save(familyDto);
   }
 
-  update(id: number, familyDto: FamilyDto) {
+  update(id: string, familyDto: FamilyDto) {
     return this.familiesRepository.update(id, familyDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.familiesRepository.delete(id);
   }
 }

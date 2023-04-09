@@ -19,7 +19,7 @@ export class RecordsService {
     return this.recordsRepository.find(findRequest({ relations, query }));
   }
 
-  findOne(id: number): Promise<Record> {
+  findOne(id: string): Promise<Record> {
     return this.recordsRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class RecordsService {
     return this.recordsRepository.save(recordDto);
   }
 
-  update(id: number, recordDto: RecordDto) {
+  update(id: string, recordDto: RecordDto) {
     return this.recordsRepository.update(id, recordDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.recordsRepository.delete(id);
   }
 }

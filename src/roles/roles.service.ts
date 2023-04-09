@@ -19,7 +19,7 @@ export class RolesService {
     return this.rolesRepository.find(findRequest({ query, relations }));
   }
 
-  findOne(id: number): Promise<Role> {
+  findOne(id: string): Promise<Role> {
     return this.rolesRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class RolesService {
     return this.rolesRepository.save(roleDto);
   }
 
-  update(id: number, roleDto: RoleDto) {
+  update(id: string, roleDto: RoleDto) {
     return this.rolesRepository.update(id, roleDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.rolesRepository.delete(id);
   }
 }

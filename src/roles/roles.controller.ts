@@ -23,7 +23,7 @@ export class RolesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.rolesService.findOne(+id);
+    return this.rolesService.findOne(id);
   }
 
   @Post('create')
@@ -33,11 +33,11 @@ export class RolesController {
 
   @Put('update/:id')
   update(@Param('id') id: string, @Body() roleDto: RoleDto) {
-    return this.rolesService.update(+id, roleDto);
+    return this.rolesService.update(id, roleDto);
   }
 
   @Delete('delete/:id')
   remove(@Param('id') id: string) {
-    return this.rolesService.remove(+id);
+    return this.rolesService.remove(id);
   }
 }

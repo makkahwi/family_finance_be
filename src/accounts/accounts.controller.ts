@@ -23,7 +23,7 @@ export class AccountsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.accountsService.findOne(+id);
+    return this.accountsService.findOne(id);
   }
 
   @Post('create')
@@ -33,11 +33,11 @@ export class AccountsController {
 
   @Put('update/:id')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
-    return this.accountsService.update(+id, accountDto);
+    return this.accountsService.update(id, accountDto);
   }
 
   @Delete('delete/:id')
   remove(@Param('id') id: string) {
-    return this.accountsService.remove(+id);
+    return this.accountsService.remove(id);
   }
 }

@@ -19,7 +19,7 @@ export class CategoriesService {
     return this.categoriesRepository.find(findRequest({ relations, query }));
   }
 
-  findOne(id: number): Promise<Category> {
+  findOne(id: string): Promise<Category> {
     return this.categoriesRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class CategoriesService {
     return this.categoriesRepository.save(categoryDto);
   }
 
-  update(id: number, categoryDto: CategoryDto) {
+  update(id: string, categoryDto: CategoryDto) {
     return this.categoriesRepository.update(id, categoryDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.categoriesRepository.delete(id);
   }
 }

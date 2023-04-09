@@ -19,7 +19,7 @@ export class TransfersService {
     return this.transfersRepository.find(findRequest({ query, relations }));
   }
 
-  findOne(id: number): Promise<Transfer> {
+  findOne(id: string): Promise<Transfer> {
     return this.transfersRepository.findOne({ where: { id }, relations });
   }
 
@@ -27,11 +27,11 @@ export class TransfersService {
     return this.transfersRepository.save(transferDto);
   }
 
-  update(id: number, transferDto: TransferDto) {
+  update(id: string, transferDto: TransferDto) {
     return this.transfersRepository.update(id, transferDto);
   }
 
-  async remove(id: number): Promise<void> {
+  async remove(id: string): Promise<void> {
     await this.transfersRepository.delete(id);
   }
 }

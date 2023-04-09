@@ -10,7 +10,7 @@ import { Account } from '../../accounts/entities/account.entity';
 @Entity()
 export class Transfer {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   amount: number;

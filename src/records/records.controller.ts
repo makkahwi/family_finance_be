@@ -23,7 +23,7 @@ export class RecordsController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.recordsService.findOne(+id);
+    return this.recordsService.findOne(id);
   }
 
   @Post('create')
@@ -33,11 +33,11 @@ export class RecordsController {
 
   @Put('update/:id')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
-    return this.recordsService.update(+id, recordDto);
+    return this.recordsService.update(id, recordDto);
   }
 
   @Delete('delete/:id')
   remove(@Param('id') id: string) {
-    return this.recordsService.remove(+id);
+    return this.recordsService.remove(id);
   }
 }

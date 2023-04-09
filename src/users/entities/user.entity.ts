@@ -11,7 +11,7 @@ import { Family } from '../../families/entities/family.entity';
 @Entity()
 export class User {
   @PrimaryGeneratedColumn('uuid')
-  id: number;
+  id: string;
 
   @Column()
   name: string;

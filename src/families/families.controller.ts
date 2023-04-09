@@ -23,7 +23,7 @@ export class FamiliesController {
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.familiesService.findOne(+id);
+    return this.familiesService.findOne(id);
   }
 
   @Post('create')
@@ -33,11 +33,11 @@ export class FamiliesController {
 
   @Put('update/:id')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
-    return this.familiesService.update(+id, familyDto);
+    return this.familiesService.update(id, familyDto);
   }
 
   @Delete('delete/:id')
   remove(@Param('id') id: string) {
-    return this.familiesService.remove(+id);
+    return this.familiesService.remove(id);
   }
 }
