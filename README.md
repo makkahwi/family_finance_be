@@ -18,6 +18,7 @@
   - Missing required prop
   - Unauthorized
 - Notifications Generator
+- Add user activity tracker
 - Add relations inclusion control to API calls
 - Add seed data to models
 - Add content localization
