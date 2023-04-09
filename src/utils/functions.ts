@@ -54,10 +54,17 @@ const buildSortQuery = (query) => {
   }
 };
 
-const buildWherePostfixQueries = (query, postfix, operator) => {
+const buildWherePostfixQueries = (query, postfix, operator, equal) => {
   let where = {};
 
-  const keys = Object.keys(query).filter((key) => key.endsWith(postfix));
+  const keys = Object.keys(query).filter((key) =>
+    equal
+      ? postfixes.reduce(
+          (final, { postfix }) => (key.endsWith(postfix) ? false : final),
+          true,
+        )
+      : key.endsWith(postfix),
+  );
 
   if (keys.length) {
     const lists = keys
@@ -65,7 +72,9 @@ const buildWherePostfixQueries = (query, postfix, operator) => {
       .reduce(
         (final, current) => ({
           ...final,
-          [current.replace(postfix, '')]: operator(In(query[current])),
+          [current.replace(postfix, '')]: equal
+            ? In(query[current])
+            : operator(In(query[current])),
         }),
         {},
       );
@@ -75,7 +84,9 @@ const buildWherePostfixQueries = (query, postfix, operator) => {
       .reduce(
         (final, current) => ({
           ...final,
-          [current.replace(postfix, '')]: operator(query[current]),
+          [current.replace(postfix, '')]: equal
+            ? query[current]
+            : operator(query[current]),
         }),
         {},
       );
@@ -93,10 +104,15 @@ const buildWhereQuery = (query) => {
     postfixes.forEach(({ postfix, operator }) => {
       finalWhere = {
         ...finalWhere,
-        ...buildWherePostfixQueries(query, postfix, operator),
+        ...buildWherePostfixQueries(query, postfix, operator, false),
       };
     });
   }
+
+  finalWhere = {
+    ...finalWhere,
+    ...buildWherePostfixQueries(query, '', null, true),
+  };
 
   return finalWhere;
 };
