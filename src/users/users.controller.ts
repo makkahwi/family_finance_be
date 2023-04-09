@@ -26,17 +26,17 @@ export class UsersController {
     return this.usersService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() userDto: UserDto) {
     return this.usersService.create(userDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() userDto: UserDto) {
     return this.usersService.update(+id, userDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.usersService.remove(+id);
   }

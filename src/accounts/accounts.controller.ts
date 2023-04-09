@@ -26,17 +26,17 @@ export class AccountsController {
     return this.accountsService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() accountDto: AccountDto) {
     return this.accountsService.create(accountDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
     return this.accountsService.update(+id, accountDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.accountsService.remove(+id);
   }

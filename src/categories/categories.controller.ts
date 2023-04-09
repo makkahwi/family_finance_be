@@ -26,17 +26,17 @@ export class CategoriesController {
     return this.categoriesService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() categoryDto: CategoryDto) {
     return this.categoriesService.create(categoryDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() categoryDto: CategoryDto) {
     return this.categoriesService.update(+id, categoryDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(+id);
   }

@@ -26,17 +26,17 @@ export class RecordsController {
     return this.recordsService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() recordDto: RecordDto) {
     return this.recordsService.create(recordDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
     return this.recordsService.update(+id, recordDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.recordsService.remove(+id);
   }

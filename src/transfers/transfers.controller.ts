@@ -26,17 +26,17 @@ export class TransfersController {
     return this.transfersService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() transferDto: TransferDto) {
     return this.transfersService.create(transferDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() transferDto: TransferDto) {
     return this.transfersService.update(+id, transferDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.transfersService.remove(+id);
   }

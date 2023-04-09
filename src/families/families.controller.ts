@@ -26,17 +26,17 @@ export class FamiliesController {
     return this.familiesService.findOne(+id);
   }
 
-  @Post()
+  @Post('create')
   create(@Body() familyDto: FamilyDto) {
     return this.familiesService.create(familyDto);
   }
 
-  @Put(':id')
+  @Put('update/:id')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
     return this.familiesService.update(+id, familyDto);
   }
 
-  @Delete(':id')
+  @Delete('delete/:id')
   remove(@Param('id') id: string) {
     return this.familiesService.remove(+id);
   }
