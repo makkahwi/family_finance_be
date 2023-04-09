@@ -1,6 +1,6 @@
 import {
-  Equal,
   ILike,
+  In,
   LessThan,
   LessThanOrEqual,
   MoreThan,
@@ -10,8 +10,9 @@ import {
 
 const postfixes = [
   {
-    name: 'Sort',
-    postfix: '_sort',
+    name: 'Bigger Than Or Equal',
+    postfix: '_bte',
+    operator: MoreThanOrEqual,
   },
   {
     name: 'Bigger Than',
@@ -19,24 +20,14 @@ const postfixes = [
     operator: MoreThan,
   },
   {
-    name: 'Bigger Than Or Equal',
-    postfix: '_bte',
-    operator: MoreThanOrEqual,
-  },
-  {
-    name: 'Smaller Than',
-    postfix: '_st',
-    operator: LessThan,
-  },
-  {
     name: 'Smaller Than Or Equal',
     postfix: '_ste',
     operator: LessThanOrEqual,
   },
   {
-    name: 'Equal',
-    postfix: '_eq',
-    operator: Equal,
+    name: 'Smaller Than',
+    postfix: '_st',
+    operator: LessThan,
   },
   {
     name: 'Not Equal',
@@ -52,7 +43,7 @@ const postfixes = [
 
 const buildSortQuery = (query) => {
   if (query) {
-    const keys = Object.keys(query).filter((key) => key.includes('_sort'));
+    const keys = Object.keys(query).filter((key) => key.endsWith('_sort'));
 
     return keys?.reduce((final, current) => {
       const prop = current.replace('_sort', '');
@@ -63,43 +54,48 @@ const buildSortQuery = (query) => {
   }
 };
 
+const buildWherePostFixQueries = (query, postfix, operator) => {
+  let where = {};
+
+  const keys = Object.keys(query).filter((key) => key.endsWith(postfix));
+
+  if (keys.length) {
+    const lists = keys
+      ?.filter((key) => typeof query[key] === 'object')
+      .reduce(
+        (final, current) => ({
+          ...final,
+          [current.replace(postfix, '')]: operator(In(query[current])),
+        }),
+        {},
+      );
+
+    const nonLists = keys
+      ?.filter((key) => typeof query[key] !== 'object')
+      .reduce(
+        (final, current) => ({
+          ...final,
+          [current.replace(postfix, '')]: operator(query[current]),
+        }),
+        {},
+      );
+
+    where = { ...nonLists, ...lists };
+  }
+
+  return where;
+};
+
 const buildWhereQuery = (query) => {
   let finalWhere = {};
 
   if (query) {
-    const keys = Object.keys(query).filter((key) => !key.includes('_sort'));
-
-    if (keys.length) {
-      const ors = keys?.filter((key) => typeof query[key] === 'object');
-
-      const nonOrs = keys
-        ?.filter((key) => typeof query[key] !== 'object')
-        .reduce(
-          (final, current) => ({ ...final, [current]: query[current] }),
-          {},
-        );
-
-      const cartesian = (...args) =>
-        args.reduce(
-          (a, b) =>
-            a
-              .map((x) => b.map((y) => x.concat([y])))
-              .reduce((acc, t) => acc.concat(t), []),
-          [[]],
-        );
-
-      if (ors.length > 0) {
-        finalWhere = cartesian(
-          ...ors.map((key) => query[key].map((value) => ({ [key]: value }))),
-        ).map((row) =>
-          row.reduce((final, current) => ({ ...final, ...current }), {
-            ...nonOrs,
-          }),
-        );
-      } else if (nonOrs) {
-        finalWhere = nonOrs;
-      }
-    }
+    postfixes.forEach(({ postfix, operator }) => {
+      finalWhere = {
+        ...finalWhere,
+        ...buildWherePostFixQueries(query, postfix, operator),
+      };
+    });
   }
 
   return finalWhere;
