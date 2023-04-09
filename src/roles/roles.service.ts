@@ -19,6 +19,10 @@ export class RolesService {
     return this.rolesRepository.find(findRequest({ query, relations }));
   }
 
+  count(query) {
+    return this.rolesRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Role> {
     return this.rolesRepository.findOne({ where: { id }, relations });
   }

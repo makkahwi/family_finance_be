@@ -21,6 +21,11 @@ export class RecordsController {
     return this.recordsService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.recordsService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.recordsService.findOne(id);

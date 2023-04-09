@@ -21,6 +21,11 @@ export class TransfersController {
     return this.transfersService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.transfersService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.transfersService.findOne(id);

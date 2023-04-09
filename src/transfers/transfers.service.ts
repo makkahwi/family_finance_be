@@ -19,6 +19,10 @@ export class TransfersService {
     return this.transfersRepository.find(findRequest({ query, relations }));
   }
 
+  count(query) {
+    return this.transfersRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Transfer> {
     return this.transfersRepository.findOne({ where: { id }, relations });
   }

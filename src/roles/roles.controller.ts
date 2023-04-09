@@ -21,6 +21,11 @@ export class RolesController {
     return this.rolesService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.rolesService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.rolesService.findOne(id);

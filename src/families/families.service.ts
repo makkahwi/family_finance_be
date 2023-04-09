@@ -19,6 +19,10 @@ export class FamiliesService {
     return this.familiesRepository.find(findRequest({ relations, query }));
   }
 
+  count(query) {
+    return this.familiesRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Family> {
     return this.familiesRepository.findOne({ where: { id }, relations });
   }

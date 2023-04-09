@@ -19,6 +19,10 @@ export class CategoriesService {
     return this.categoriesRepository.find(findRequest({ relations, query }));
   }
 
+  count(query) {
+    return this.categoriesRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Category> {
     return this.categoriesRepository.findOne({ where: { id }, relations });
   }

@@ -19,6 +19,10 @@ export class AccountsService {
     return this.accountsRepository.find(findRequest({ relations, query }));
   }
 
+  count(query) {
+    return this.accountsRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Account> {
     return this.accountsRepository.findOne({ where: { id }, relations });
   }

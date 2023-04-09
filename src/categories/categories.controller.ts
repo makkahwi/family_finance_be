@@ -21,6 +21,11 @@ export class CategoriesController {
     return this.categoriesService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.categoriesService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.categoriesService.findOne(id);

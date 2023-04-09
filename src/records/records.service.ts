@@ -19,6 +19,10 @@ export class RecordsService {
     return this.recordsRepository.find(findRequest({ relations, query }));
   }
 
+  count(query) {
+    return this.recordsRepository.count(findRequest({ relations, query }));
+  }
+
   findOne(id: string): Promise<Record> {
     return this.recordsRepository.findOne({ where: { id }, relations });
   }

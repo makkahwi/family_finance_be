@@ -21,6 +21,11 @@ export class AccountsController {
     return this.accountsService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.accountsService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.accountsService.findOne(id);

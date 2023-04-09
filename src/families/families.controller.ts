@@ -21,6 +21,11 @@ export class FamiliesController {
     return this.familiesService.findAll(params);
   }
 
+  @Get('count')
+  count(@Query() params) {
+    return this.familiesService.count(params);
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.familiesService.findOne(id);
