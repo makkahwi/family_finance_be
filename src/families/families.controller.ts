@@ -19,6 +19,7 @@ import {
 import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
 
+@ApiTags('Families')
 @Controller('families')
 export class FamiliesController {
   constructor(private readonly familiesService: FamiliesService) {}
@@ -79,7 +80,6 @@ export class FamiliesController {
     isArray: true,
     type: FamilyDto,
   })
-  @ApiTags('Families')
   findAll(@Query() params) {
     return this.familiesService.findAll(params);
   }
@@ -140,7 +140,6 @@ export class FamiliesController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Families')
   count(@Query() params) {
     return this.familiesService.count(params);
   }
@@ -159,7 +158,6 @@ export class FamiliesController {
     isArray: false,
     type: FamilyDto,
   })
-  @ApiTags('Families')
   findOne(@Param('id') id: string) {
     return this.familiesService.findOne(id);
   }
@@ -173,7 +171,6 @@ export class FamiliesController {
     isArray: false,
     type: FamilyDto,
   })
-  @ApiTags('Families')
   create(@Body() familyDto: FamilyDto) {
     return this.familiesService.create(familyDto);
   }
@@ -193,7 +190,6 @@ export class FamiliesController {
     isArray: false,
     type: FamilyDto,
   })
-  @ApiTags('Families')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
     return this.familiesService.update(id, familyDto);
   }
@@ -213,7 +209,6 @@ export class FamiliesController {
     isArray: false,
     type: FamilyDto,
   })
-  @ApiTags('Families')
   remove(@Param('id') id: string) {
     return this.familiesService.remove(id);
   }

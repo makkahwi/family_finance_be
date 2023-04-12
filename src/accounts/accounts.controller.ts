@@ -13,13 +13,13 @@ import {
   ApiOkResponse,
   ApiOperation,
   ApiParam,
-  ApiResponse,
   ApiTags,
 } from '@nestjs/swagger';
 
 import { AccountsService } from './accounts.service';
 import { AccountDto } from './dto/account.dto';
 
+@ApiTags('Accounts')
 @Controller('accounts')
 export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
@@ -80,7 +80,6 @@ export class AccountsController {
     isArray: true,
     type: AccountDto,
   })
-  @ApiTags('Accounts')
   findAll(@Query() params) {
     return this.accountsService.findAll(params);
   }
@@ -141,7 +140,6 @@ export class AccountsController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Accounts')
   count(@Query() params) {
     return this.accountsService.count(params);
   }
@@ -160,7 +158,6 @@ export class AccountsController {
     isArray: false,
     type: AccountDto,
   })
-  @ApiTags('Accounts')
   findOne(@Param('id') id: string) {
     return this.accountsService.findOne(id);
   }
@@ -174,7 +171,6 @@ export class AccountsController {
     isArray: false,
     type: AccountDto,
   })
-  @ApiTags('Accounts')
   create(@Body() accountDto: AccountDto) {
     return this.accountsService.create(accountDto);
   }
@@ -194,7 +190,6 @@ export class AccountsController {
     isArray: false,
     type: AccountDto,
   })
-  @ApiTags('Accounts')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
     return this.accountsService.update(id, accountDto);
   }
@@ -214,7 +209,6 @@ export class AccountsController {
     isArray: false,
     type: AccountDto,
   })
-  @ApiTags('Accounts')
   remove(@Param('id') id: string) {
     return this.accountsService.remove(id);
   }

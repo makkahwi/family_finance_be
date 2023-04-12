@@ -19,6 +19,7 @@ import {
 import { RoleDto } from './dto/role.dto';
 import { RolesService } from './roles.service';
 
+@ApiTags('Roles')
 @Controller('roles')
 export class RolesController {
   constructor(private readonly rolesService: RolesService) {}
@@ -79,7 +80,6 @@ export class RolesController {
     isArray: true,
     type: RoleDto,
   })
-  @ApiTags('Roles')
   findAll(@Query() params) {
     return this.rolesService.findAll(params);
   }
@@ -140,7 +140,6 @@ export class RolesController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Roles')
   count(@Query() params) {
     return this.rolesService.count(params);
   }
@@ -159,7 +158,6 @@ export class RolesController {
     isArray: false,
     type: RoleDto,
   })
-  @ApiTags('Roles')
   findOne(@Param('id') id: string) {
     return this.rolesService.findOne(id);
   }
@@ -173,7 +171,6 @@ export class RolesController {
     isArray: false,
     type: RoleDto,
   })
-  @ApiTags('Roles')
   create(@Body() roleDto: RoleDto) {
     return this.rolesService.create(roleDto);
   }
@@ -193,7 +190,6 @@ export class RolesController {
     isArray: false,
     type: RoleDto,
   })
-  @ApiTags('Roles')
   update(@Param('id') id: string, @Body() roleDto: RoleDto) {
     return this.rolesService.update(id, roleDto);
   }
@@ -213,7 +209,6 @@ export class RolesController {
     isArray: false,
     type: RoleDto,
   })
-  @ApiTags('Roles')
   remove(@Param('id') id: string) {
     return this.rolesService.remove(id);
   }

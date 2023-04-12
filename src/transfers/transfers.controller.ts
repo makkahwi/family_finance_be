@@ -19,6 +19,7 @@ import {
 import { TransferDto } from './dto/transfer.dto';
 import { TransfersService } from './transfers.service';
 
+@ApiTags('Transfers')
 @Controller('transfers')
 export class TransfersController {
   constructor(private readonly transfersService: TransfersService) {}
@@ -79,7 +80,6 @@ export class TransfersController {
     isArray: true,
     type: TransferDto,
   })
-  @ApiTags('Transfers')
   findAll(@Query() params) {
     return this.transfersService.findAll(params);
   }
@@ -140,7 +140,6 @@ export class TransfersController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Transfers')
   count(@Query() params) {
     return this.transfersService.count(params);
   }
@@ -159,7 +158,6 @@ export class TransfersController {
     isArray: false,
     type: TransferDto,
   })
-  @ApiTags('Transfers')
   findOne(@Param('id') id: string) {
     return this.transfersService.findOne(id);
   }
@@ -173,7 +171,6 @@ export class TransfersController {
     isArray: false,
     type: TransferDto,
   })
-  @ApiTags('Transfers')
   create(@Body() transferDto: TransferDto) {
     return this.transfersService.create(transferDto);
   }
@@ -193,7 +190,6 @@ export class TransfersController {
     isArray: false,
     type: TransferDto,
   })
-  @ApiTags('Transfers')
   update(@Param('id') id: string, @Body() transferDto: TransferDto) {
     return this.transfersService.update(id, transferDto);
   }
@@ -213,7 +209,6 @@ export class TransfersController {
     isArray: false,
     type: TransferDto,
   })
-  @ApiTags('Transfers')
   remove(@Param('id') id: string) {
     return this.transfersService.remove(id);
   }

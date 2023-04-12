@@ -19,6 +19,7 @@ import {
 import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
 
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -79,7 +80,6 @@ export class UsersController {
     isArray: true,
     type: UserDto,
   })
-  @ApiTags('Users')
   findAll(@Query() params) {
     return this.usersService.findAll(params);
   }
@@ -140,7 +140,6 @@ export class UsersController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Users')
   count(@Query() params) {
     return this.usersService.count(params);
   }
@@ -159,7 +158,6 @@ export class UsersController {
     isArray: false,
     type: UserDto,
   })
-  @ApiTags('Users')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
   }
@@ -173,7 +171,6 @@ export class UsersController {
     isArray: false,
     type: UserDto,
   })
-  @ApiTags('Users')
   create(@Body() userDto: UserDto) {
     return this.usersService.create(userDto);
   }
@@ -193,7 +190,6 @@ export class UsersController {
     isArray: false,
     type: UserDto,
   })
-  @ApiTags('Users')
   update(@Param('id') id: string, @Body() userDto: UserDto) {
     return this.usersService.update(id, userDto);
   }
@@ -213,7 +209,6 @@ export class UsersController {
     isArray: false,
     type: UserDto,
   })
-  @ApiTags('Users')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }

@@ -19,6 +19,7 @@ import {
 import { RecordDto } from './dto/record.dto';
 import { RecordsService } from './records.service';
 
+@ApiTags('Records')
 @Controller('records')
 export class RecordsController {
   constructor(private readonly recordsService: RecordsService) {}
@@ -79,7 +80,6 @@ export class RecordsController {
     isArray: true,
     type: RecordDto,
   })
-  @ApiTags('Records')
   findAll(@Query() params) {
     return this.recordsService.findAll(params);
   }
@@ -140,7 +140,6 @@ export class RecordsController {
     isArray: false,
     type: Number,
   })
-  @ApiTags('Records')
   count(@Query() params) {
     return this.recordsService.count(params);
   }
@@ -159,7 +158,6 @@ export class RecordsController {
     isArray: false,
     type: RecordDto,
   })
-  @ApiTags('Records')
   findOne(@Param('id') id: string) {
     return this.recordsService.findOne(id);
   }
@@ -173,7 +171,6 @@ export class RecordsController {
     isArray: false,
     type: RecordDto,
   })
-  @ApiTags('Records')
   create(@Body() recordDto: RecordDto) {
     return this.recordsService.create(recordDto);
   }
@@ -193,7 +190,6 @@ export class RecordsController {
     isArray: false,
     type: RecordDto,
   })
-  @ApiTags('Records')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
     return this.recordsService.update(id, recordDto);
   }
@@ -213,7 +209,6 @@ export class RecordsController {
     isArray: false,
     type: RecordDto,
   })
-  @ApiTags('Records')
   remove(@Param('id') id: string) {
     return this.recordsService.remove(id);
   }
