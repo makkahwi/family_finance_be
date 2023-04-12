@@ -18,12 +18,10 @@
   - Missing required prop
   - Unauthorized
 - Notifications Generator
-- Add user activity tracker
+- Audit Logs (User activity tracking)
 - Add relations inclusion control to API calls
 - Add seed data to models
 - Add content localization
-- Split swagger sections by model
-- Audit Logs (Activities tracking)
 - Emailing Service
 - PDF Generator
 
