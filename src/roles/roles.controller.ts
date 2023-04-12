@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { RoleDto } from './dto/role.dto';
 import { RolesService } from './roles.service';
@@ -69,6 +75,10 @@ export class RolesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: RoleDto,
+  })
   @ApiTags('Roles')
   findAll(@Query() params) {
     return this.rolesService.findAll(params);
@@ -126,6 +136,10 @@ export class RolesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Roles')
   count(@Query() params) {
     return this.rolesService.count(params);
@@ -141,6 +155,10 @@ export class RolesController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: RoleDto,
+  })
   @ApiTags('Roles')
   findOne(@Param('id') id: string) {
     return this.rolesService.findOne(id);
@@ -151,6 +169,10 @@ export class RolesController {
     description: 'Create One Role',
   })
   @ApiBody({ type: RoleDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RoleDto,
+  })
   @ApiTags('Roles')
   create(@Body() roleDto: RoleDto) {
     return this.rolesService.create(roleDto);
@@ -167,6 +189,10 @@ export class RolesController {
     description: 'Uuid',
   })
   @ApiBody({ type: RoleDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RoleDto,
+  })
   @ApiTags('Roles')
   update(@Param('id') id: string, @Body() roleDto: RoleDto) {
     return this.rolesService.update(id, roleDto);
@@ -183,6 +209,10 @@ export class RolesController {
     description: 'Uuid',
   })
   @ApiBody({ type: RoleDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RoleDto,
+  })
   @ApiTags('Roles')
   remove(@Param('id') id: string) {
     return this.rolesService.remove(id);

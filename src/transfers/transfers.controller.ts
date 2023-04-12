@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { TransferDto } from './dto/transfer.dto';
 import { TransfersService } from './transfers.service';
@@ -69,6 +75,10 @@ export class TransfersController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: TransferDto,
+  })
   @ApiTags('Transfers')
   findAll(@Query() params) {
     return this.transfersService.findAll(params);
@@ -126,6 +136,10 @@ export class TransfersController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Transfers')
   count(@Query() params) {
     return this.transfersService.count(params);
@@ -141,6 +155,10 @@ export class TransfersController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: TransferDto,
+  })
   @ApiTags('Transfers')
   findOne(@Param('id') id: string) {
     return this.transfersService.findOne(id);
@@ -151,6 +169,10 @@ export class TransfersController {
     description: 'Create One Transfer',
   })
   @ApiBody({ type: TransferDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: TransferDto,
+  })
   @ApiTags('Transfers')
   create(@Body() transferDto: TransferDto) {
     return this.transfersService.create(transferDto);
@@ -167,6 +189,10 @@ export class TransfersController {
     description: 'Uuid',
   })
   @ApiBody({ type: TransferDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: TransferDto,
+  })
   @ApiTags('Transfers')
   update(@Param('id') id: string, @Body() transferDto: TransferDto) {
     return this.transfersService.update(id, transferDto);
@@ -183,6 +209,10 @@ export class TransfersController {
     description: 'Uuid',
   })
   @ApiBody({ type: TransferDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: TransferDto,
+  })
   @ApiTags('Transfers')
   remove(@Param('id') id: string) {
     return this.transfersService.remove(id);

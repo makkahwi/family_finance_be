@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { UserDto } from './dto/user.dto';
 import { UsersService } from './users.service';
@@ -69,6 +75,10 @@ export class UsersController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: UserDto,
+  })
   @ApiTags('Users')
   findAll(@Query() params) {
     return this.usersService.findAll(params);
@@ -126,6 +136,10 @@ export class UsersController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Users')
   count(@Query() params) {
     return this.usersService.count(params);
@@ -141,6 +155,10 @@ export class UsersController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: UserDto,
+  })
   @ApiTags('Users')
   findOne(@Param('id') id: string) {
     return this.usersService.findOne(id);
@@ -151,6 +169,10 @@ export class UsersController {
     description: 'Create One User',
   })
   @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: UserDto,
+  })
   @ApiTags('Users')
   create(@Body() userDto: UserDto) {
     return this.usersService.create(userDto);
@@ -167,6 +189,10 @@ export class UsersController {
     description: 'Uuid',
   })
   @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: UserDto,
+  })
   @ApiTags('Users')
   update(@Param('id') id: string, @Body() userDto: UserDto) {
     return this.usersService.update(id, userDto);
@@ -183,6 +209,10 @@ export class UsersController {
     description: 'Uuid',
   })
   @ApiBody({ type: UserDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: UserDto,
+  })
   @ApiTags('Users')
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);

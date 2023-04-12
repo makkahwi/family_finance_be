@@ -8,7 +8,14 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiResponse,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { AccountsService } from './accounts.service';
 import { AccountDto } from './dto/account.dto';
@@ -69,6 +76,10 @@ export class AccountsController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: AccountDto,
+  })
   @ApiTags('Accounts')
   findAll(@Query() params) {
     return this.accountsService.findAll(params);
@@ -126,6 +137,10 @@ export class AccountsController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Accounts')
   count(@Query() params) {
     return this.accountsService.count(params);
@@ -141,6 +156,10 @@ export class AccountsController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: AccountDto,
+  })
   @ApiTags('Accounts')
   findOne(@Param('id') id: string) {
     return this.accountsService.findOne(id);
@@ -151,6 +170,10 @@ export class AccountsController {
     description: 'Create One Account',
   })
   @ApiBody({ type: AccountDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: AccountDto,
+  })
   @ApiTags('Accounts')
   create(@Body() accountDto: AccountDto) {
     return this.accountsService.create(accountDto);
@@ -167,6 +190,10 @@ export class AccountsController {
     description: 'Uuid',
   })
   @ApiBody({ type: AccountDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: AccountDto,
+  })
   @ApiTags('Accounts')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
     return this.accountsService.update(id, accountDto);
@@ -183,6 +210,10 @@ export class AccountsController {
     description: 'Uuid',
   })
   @ApiBody({ type: AccountDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: AccountDto,
+  })
   @ApiTags('Accounts')
   remove(@Param('id') id: string) {
     return this.accountsService.remove(id);

@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { RecordDto } from './dto/record.dto';
 import { RecordsService } from './records.service';
@@ -69,6 +75,10 @@ export class RecordsController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: RecordDto,
+  })
   @ApiTags('Records')
   findAll(@Query() params) {
     return this.recordsService.findAll(params);
@@ -126,6 +136,10 @@ export class RecordsController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Records')
   count(@Query() params) {
     return this.recordsService.count(params);
@@ -141,6 +155,10 @@ export class RecordsController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: RecordDto,
+  })
   @ApiTags('Records')
   findOne(@Param('id') id: string) {
     return this.recordsService.findOne(id);
@@ -151,6 +169,10 @@ export class RecordsController {
     description: 'Create One Record',
   })
   @ApiBody({ type: RecordDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RecordDto,
+  })
   @ApiTags('Records')
   create(@Body() recordDto: RecordDto) {
     return this.recordsService.create(recordDto);
@@ -167,6 +189,10 @@ export class RecordsController {
     description: 'Uuid',
   })
   @ApiBody({ type: RecordDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RecordDto,
+  })
   @ApiTags('Records')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
     return this.recordsService.update(id, recordDto);
@@ -183,6 +209,10 @@ export class RecordsController {
     description: 'Uuid',
   })
   @ApiBody({ type: RecordDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: RecordDto,
+  })
   @ApiTags('Records')
   remove(@Param('id') id: string) {
     return this.recordsService.remove(id);

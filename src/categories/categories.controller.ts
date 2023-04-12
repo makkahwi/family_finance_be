@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { CategoriesService } from './categories.service';
 import { CategoryDto } from './dto/category.dto';
@@ -69,6 +75,10 @@ export class CategoriesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: CategoryDto,
+  })
   @ApiTags('Categories')
   findAll(@Query() params) {
     return this.categoriesService.findAll(params);
@@ -126,6 +136,10 @@ export class CategoriesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Categories')
   count(@Query() params) {
     return this.categoriesService.count(params);
@@ -141,6 +155,10 @@ export class CategoriesController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: CategoryDto,
+  })
   @ApiTags('Categories')
   findOne(@Param('id') id: string) {
     return this.categoriesService.findOne(id);
@@ -151,6 +169,10 @@ export class CategoriesController {
     description: 'Create One Category',
   })
   @ApiBody({ type: CategoryDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: CategoryDto,
+  })
   @ApiTags('Categories')
   create(@Body() categoryDto: CategoryDto) {
     return this.categoriesService.create(categoryDto);
@@ -167,6 +189,10 @@ export class CategoriesController {
     description: 'Uuid',
   })
   @ApiBody({ type: CategoryDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: CategoryDto,
+  })
   @ApiTags('Categories')
   update(@Param('id') id: string, @Body() categoryDto: CategoryDto) {
     return this.categoriesService.update(id, categoryDto);
@@ -183,6 +209,10 @@ export class CategoriesController {
     description: 'Uuid',
   })
   @ApiBody({ type: CategoryDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: CategoryDto,
+  })
   @ApiTags('Categories')
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(id);

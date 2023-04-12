@@ -8,7 +8,13 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBody,
+  ApiOkResponse,
+  ApiOperation,
+  ApiParam,
+  ApiTags,
+} from '@nestjs/swagger';
 
 import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
@@ -69,6 +75,10 @@ export class FamiliesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: true,
+    type: FamilyDto,
+  })
   @ApiTags('Families')
   findAll(@Query() params) {
     return this.familiesService.findAll(params);
@@ -126,6 +136,10 @@ export class FamiliesController {
     required: false,
     description: 'Sort list by property key values ("asc" or "desc")',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: Number,
+  })
   @ApiTags('Families')
   count(@Query() params) {
     return this.familiesService.count(params);
@@ -141,6 +155,10 @@ export class FamiliesController {
     required: true,
     description: 'Uuid',
   })
+  @ApiOkResponse({
+    isArray: false,
+    type: FamilyDto,
+  })
   @ApiTags('Families')
   findOne(@Param('id') id: string) {
     return this.familiesService.findOne(id);
@@ -151,6 +169,10 @@ export class FamiliesController {
     description: 'Create One Family',
   })
   @ApiBody({ type: FamilyDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: FamilyDto,
+  })
   @ApiTags('Families')
   create(@Body() familyDto: FamilyDto) {
     return this.familiesService.create(familyDto);
@@ -167,6 +189,10 @@ export class FamiliesController {
     description: 'Uuid',
   })
   @ApiBody({ type: FamilyDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: FamilyDto,
+  })
   @ApiTags('Families')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
     return this.familiesService.update(id, familyDto);
@@ -183,6 +209,10 @@ export class FamiliesController {
     description: 'Uuid',
   })
   @ApiBody({ type: FamilyDto })
+  @ApiOkResponse({
+    isArray: false,
+    type: FamilyDto,
+  })
   @ApiTags('Families')
   remove(@Param('id') id: string) {
     return this.familiesService.remove(id);
