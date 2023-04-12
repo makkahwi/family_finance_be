@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { AccountsService } from './accounts.service';
 import { AccountDto } from './dto/account.dto';
@@ -48,6 +48,7 @@ export class AccountsController {
   @ApiOperation({
     description: 'Create One Account',
   })
+  @ApiBody({ type: AccountDto })
   @ApiTags('Accounts')
   create(@Body() accountDto: AccountDto) {
     return this.accountsService.create(accountDto);
@@ -57,6 +58,7 @@ export class AccountsController {
   @ApiOperation({
     description: 'Update One Account',
   })
+  @ApiBody({ type: AccountDto })
   @ApiTags('Accounts')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
     return this.accountsService.update(id, accountDto);
@@ -66,6 +68,7 @@ export class AccountsController {
   @ApiOperation({
     description: 'Delete One Account',
   })
+  @ApiBody({ type: AccountDto })
   @ApiTags('Accounts')
   remove(@Param('id') id: string) {
     return this.accountsService.remove(id);

@@ -1,5 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { RoleDto } from './dto/role.dto';
 import { RolesService } from './roles.service';
@@ -39,6 +48,7 @@ export class RolesController {
   @ApiOperation({
     description: 'Create One Role',
   })
+  @ApiBody({ type: RoleDto })
   @ApiTags('Roles')
   create(@Body() roleDto: RoleDto) {
     return this.rolesService.create(roleDto);
@@ -48,6 +58,7 @@ export class RolesController {
   @ApiOperation({
     description: 'Update One Role',
   })
+  @ApiBody({ type: RoleDto })
   @ApiTags('Roles')
   update(@Param('id') id: string, @Body() roleDto: RoleDto) {
     return this.rolesService.update(id, roleDto);
@@ -57,6 +68,7 @@ export class RolesController {
   @ApiOperation({
     description: 'Delete One Role',
   })
+  @ApiBody({ type: RoleDto })
   @ApiTags('Roles')
   remove(@Param('id') id: string) {
     return this.rolesService.remove(id);

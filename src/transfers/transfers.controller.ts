@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { TransferDto } from './dto/transfer.dto';
 import { TransfersService } from './transfers.service';
@@ -48,6 +39,7 @@ export class TransfersController {
   @ApiOperation({
     description: 'Create One Transfer',
   })
+  @ApiBody({ type: TransferDto })
   @ApiTags('Transfers')
   create(@Body() transferDto: TransferDto) {
     return this.transfersService.create(transferDto);
@@ -57,6 +49,7 @@ export class TransfersController {
   @ApiOperation({
     description: 'Update One Transfer',
   })
+  @ApiBody({ type: TransferDto })
   @ApiTags('Transfers')
   update(@Param('id') id: string, @Body() transferDto: TransferDto) {
     return this.transfersService.update(id, transferDto);
@@ -66,6 +59,7 @@ export class TransfersController {
   @ApiOperation({
     description: 'Delete One Transfer',
   })
+  @ApiBody({ type: TransferDto })
   @ApiTags('Transfers')
   remove(@Param('id') id: string) {
     return this.transfersService.remove(id);

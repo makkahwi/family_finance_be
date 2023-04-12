@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { CategoriesService } from './categories.service';
 import { CategoryDto } from './dto/category.dto';
@@ -48,6 +48,7 @@ export class CategoriesController {
   @ApiOperation({
     description: 'Create One Category',
   })
+  @ApiBody({ type: CategoryDto })
   @ApiTags('Categories')
   create(@Body() categoryDto: CategoryDto) {
     return this.categoriesService.create(categoryDto);
@@ -57,6 +58,7 @@ export class CategoriesController {
   @ApiOperation({
     description: 'Update One Category',
   })
+  @ApiBody({ type: CategoryDto })
   @ApiTags('Categories')
   update(@Param('id') id: string, @Body() categoryDto: CategoryDto) {
     return this.categoriesService.update(id, categoryDto);
@@ -66,6 +68,7 @@ export class CategoriesController {
   @ApiOperation({
     description: 'Delete One Category',
   })
+  @ApiBody({ type: CategoryDto })
   @ApiTags('Categories')
   remove(@Param('id') id: string) {
     return this.categoriesService.remove(id);

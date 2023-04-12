@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
@@ -48,6 +39,7 @@ export class FamiliesController {
   @ApiOperation({
     description: 'Create One Family',
   })
+  @ApiBody({ type: FamilyDto })
   @ApiTags('Families')
   create(@Body() familyDto: FamilyDto) {
     return this.familiesService.create(familyDto);
@@ -57,6 +49,7 @@ export class FamiliesController {
   @ApiOperation({
     description: 'Update One Family',
   })
+  @ApiBody({ type: FamilyDto })
   @ApiTags('Families')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
     return this.familiesService.update(id, familyDto);
@@ -66,6 +59,7 @@ export class FamiliesController {
   @ApiOperation({
     description: 'Delete One Family',
   })
+  @ApiBody({ type: FamilyDto })
   @ApiTags('Families')
   remove(@Param('id') id: string) {
     return this.familiesService.remove(id);

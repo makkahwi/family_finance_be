@@ -1,14 +1,5 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Post,
-  Put,
-  Query,
-} from '@nestjs/common';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
 
 import { RecordDto } from './dto/record.dto';
 import { RecordsService } from './records.service';
@@ -48,6 +39,7 @@ export class RecordsController {
   @ApiOperation({
     description: 'Create One Record',
   })
+  @ApiBody({ type: RecordDto })
   @ApiTags('Records')
   create(@Body() recordDto: RecordDto) {
     return this.recordsService.create(recordDto);
@@ -57,6 +49,7 @@ export class RecordsController {
   @ApiOperation({
     description: 'Update One Record',
   })
+  @ApiBody({ type: RecordDto })
   @ApiTags('Records')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
     return this.recordsService.update(id, recordDto);
@@ -66,6 +59,7 @@ export class RecordsController {
   @ApiOperation({
     description: 'Delete One Record',
   })
+  @ApiBody({ type: RecordDto })
   @ApiTags('Records')
   remove(@Param('id') id: string) {
     return this.recordsService.remove(id);
