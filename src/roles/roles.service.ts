@@ -43,7 +43,7 @@ export class RolesService {
     return this.rolesRepository.update(id, roleDto);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.rolesRepository.delete(id);
+  remove(id: string) {
+    return this.rolesRepository.delete(id);
   }
 }

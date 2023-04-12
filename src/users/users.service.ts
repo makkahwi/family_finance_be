@@ -43,7 +43,7 @@ export class UsersService {
     return this.usersRepository.update(id, userDto);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.usersRepository.delete(id);
+  remove(id: string) {
+    return this.usersRepository.delete(id);
   }
 }

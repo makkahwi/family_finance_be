@@ -43,7 +43,7 @@ export class CategoriesService {
     return this.categoriesRepository.update(id, categoryDto);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.categoriesRepository.delete(id);
+  remove(id: string) {
+    return this.categoriesRepository.delete(id);
   }
 }

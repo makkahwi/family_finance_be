@@ -43,7 +43,7 @@ export class TransfersService {
     return this.transfersRepository.update(id, transferDto);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.transfersRepository.delete(id);
+  remove(id: string) {
+    return this.transfersRepository.delete(id);
   }
 }

@@ -43,7 +43,7 @@ export class FamiliesService {
     return this.familiesRepository.update(id, familyDto);
   }
 
-  async remove(id: string): Promise<void> {
-    await this.familiesRepository.delete(id);
+  remove(id: string) {
+    return this.familiesRepository.delete(id);
   }
 }
