@@ -175,6 +175,19 @@ export class RecordsController {
     return this.recordsService.create(recordDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Records At Once',
+  })
+  @ApiBody({ type: RecordDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: RecordDto,
+  })
+  createMany(@Body() recordDtos: RecordDto[]) {
+    return this.recordsService.createMany(recordDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Record',

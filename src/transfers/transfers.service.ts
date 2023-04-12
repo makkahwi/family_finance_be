@@ -31,6 +31,14 @@ export class TransfersService {
     return this.transfersRepository.save(transferDto);
   }
 
+  createMany(transferDtos: TransferDto[]) {
+    const batch = [];
+    transferDtos.forEach((transferDto) => {
+      batch.push(this.transfersRepository.create(transferDto));
+    });
+    return this.transfersRepository.save(batch);
+  }
+
   update(id: string, transferDto: TransferDto) {
     return this.transfersRepository.update(id, transferDto);
   }

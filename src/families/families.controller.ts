@@ -175,6 +175,19 @@ export class FamiliesController {
     return this.familiesService.create(familyDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Families At Once',
+  })
+  @ApiBody({ type: FamilyDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: FamilyDto,
+  })
+  createMany(@Body() familyDtos: FamilyDto[]) {
+    return this.familiesService.createMany(familyDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Family',

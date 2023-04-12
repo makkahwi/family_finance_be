@@ -175,6 +175,19 @@ export class AccountsController {
     return this.accountsService.create(accountDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Account At Once',
+  })
+  @ApiBody({ type: AccountDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: AccountDto,
+  })
+  createMany(@Body() accountDtos: AccountDto[]) {
+    return this.accountsService.createMany(accountDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Account',

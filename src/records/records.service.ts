@@ -31,6 +31,14 @@ export class RecordsService {
     return this.recordsRepository.save(recordDto);
   }
 
+  createMany(recordDtos: RecordDto[]) {
+    const batch = [];
+    recordDtos.forEach((recordDto) => {
+      batch.push(this.recordsRepository.create(recordDto));
+    });
+    return this.recordsRepository.save(batch);
+  }
+
   update(id: string, recordDto: RecordDto) {
     return this.recordsRepository.update(id, recordDto);
   }

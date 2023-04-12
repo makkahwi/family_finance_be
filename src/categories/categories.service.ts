@@ -31,6 +31,14 @@ export class CategoriesService {
     return this.categoriesRepository.save(categoryDto);
   }
 
+  createMany(categoryDtos: CategoryDto[]) {
+    const batch = [];
+    categoryDtos.forEach((categoryDto) => {
+      batch.push(this.categoriesRepository.create(categoryDto));
+    });
+    return this.categoriesRepository.save(batch);
+  }
+
   update(id: string, categoryDto: CategoryDto) {
     return this.categoriesRepository.update(id, categoryDto);
   }

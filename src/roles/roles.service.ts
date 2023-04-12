@@ -31,6 +31,14 @@ export class RolesService {
     return this.rolesRepository.save(roleDto);
   }
 
+  createMany(roleDtos: RoleDto[]) {
+    const batch = [];
+    roleDtos.forEach((roleDto) => {
+      batch.push(this.rolesRepository.create(roleDto));
+    });
+    return this.rolesRepository.save(batch);
+  }
+
   update(id: string, roleDto: RoleDto) {
     return this.rolesRepository.update(id, roleDto);
   }

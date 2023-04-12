@@ -175,6 +175,19 @@ export class CategoriesController {
     return this.categoriesService.create(categoryDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Categories At Once',
+  })
+  @ApiBody({ type: CategoryDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: CategoryDto,
+  })
+  createMany(@Body() categoryDtos: CategoryDto[]) {
+    return this.categoriesService.createMany(categoryDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Category',

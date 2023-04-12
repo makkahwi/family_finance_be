@@ -31,6 +31,14 @@ export class AccountsService {
     return this.accountsRepository.save(accountDto);
   }
 
+  createMany(accountDtos: AccountDto[]) {
+    const batch = [];
+    accountDtos.forEach((accountDto) => {
+      batch.push(this.accountsRepository.create(accountDto));
+    });
+    return this.accountsRepository.save(batch);
+  }
+
   update(id: string, accountDto: AccountDto) {
     return this.accountsRepository.update(id, accountDto);
   }

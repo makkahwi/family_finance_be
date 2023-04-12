@@ -31,6 +31,14 @@ export class FamiliesService {
     return this.familiesRepository.save(familyDto);
   }
 
+  createMany(familyDtos: FamilyDto[]) {
+    const batch = [];
+    familyDtos.forEach((familyDto) => {
+      batch.push(this.familiesRepository.create(familyDto));
+    });
+    return this.familiesRepository.save(batch);
+  }
+
   update(id: string, familyDto: FamilyDto) {
     return this.familiesRepository.update(id, familyDto);
   }

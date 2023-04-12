@@ -175,6 +175,19 @@ export class UsersController {
     return this.usersService.create(userDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Users At Once',
+  })
+  @ApiBody({ type: UserDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: UserDto,
+  })
+  createMany(@Body() userDtos: UserDto[]) {
+    return this.usersService.createMany(userDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One User',

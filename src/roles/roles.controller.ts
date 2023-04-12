@@ -175,6 +175,19 @@ export class RolesController {
     return this.rolesService.create(roleDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Roles At Once',
+  })
+  @ApiBody({ type: RoleDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: RoleDto,
+  })
+  createMany(@Body() roleDtos: RoleDto[]) {
+    return this.rolesService.createMany(roleDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Role',

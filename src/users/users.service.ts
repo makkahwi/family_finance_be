@@ -31,6 +31,14 @@ export class UsersService {
     return this.usersRepository.save(userDto);
   }
 
+  createMany(userDtos: UserDto[]) {
+    const batch = [];
+    userDtos.forEach((userDto) => {
+      batch.push(this.usersRepository.create(userDto));
+    });
+    return this.usersRepository.save(batch);
+  }
+
   update(id: string, userDto: UserDto) {
     return this.usersRepository.update(id, userDto);
   }

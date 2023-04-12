@@ -175,6 +175,19 @@ export class TransfersController {
     return this.transfersService.create(transferDto);
   }
 
+  @Post('create-many')
+  @ApiOperation({
+    description: 'Create Many Transfers At Once',
+  })
+  @ApiBody({ type: TransferDto, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: TransferDto,
+  })
+  createMany(@Body() transferDtos: TransferDto[]) {
+    return this.transfersService.createMany(transferDtos);
+  }
+
   @Put('update/:id')
   @ApiOperation({
     description: 'Update One Transfer',
