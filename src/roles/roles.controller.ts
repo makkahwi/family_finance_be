@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
 import { RoleDto } from './dto/role.dto';
 import { RolesService } from './roles.service';
@@ -19,7 +19,55 @@ export class RolesController {
 
   @Get()
   @ApiOperation({
-    description: 'Get All Roles List',
+    description: 'Get All Roles List With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Roles')
   findAll(@Query() params) {
@@ -28,7 +76,55 @@ export class RolesController {
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Roles List Count',
+    description: 'Get All Roles List Count With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Roles')
   count(@Query() params) {
@@ -38,6 +134,12 @@ export class RolesController {
   @Get(':id')
   @ApiOperation({
     description: 'Get One Role By ID',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiTags('Roles')
   findOne(@Param('id') id: string) {
@@ -58,6 +160,12 @@ export class RolesController {
   @ApiOperation({
     description: 'Update One Role',
   })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
+  })
   @ApiBody({ type: RoleDto })
   @ApiTags('Roles')
   update(@Param('id') id: string, @Body() roleDto: RoleDto) {
@@ -67,6 +175,12 @@ export class RolesController {
   @Delete('delete/:id')
   @ApiOperation({
     description: 'Delete One Role',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiBody({ type: RoleDto })
   @ApiTags('Roles')

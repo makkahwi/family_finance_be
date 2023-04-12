@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
 import { AccountsService } from './accounts.service';
 import { AccountDto } from './dto/account.dto';
@@ -19,7 +19,55 @@ export class AccountsController {
 
   @Get()
   @ApiOperation({
-    description: 'Get All Accounts List',
+    description: 'Get All Accounts List With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Accounts')
   findAll(@Query() params) {
@@ -28,7 +76,55 @@ export class AccountsController {
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Accounts List Count',
+    description: 'Get All Accounts List Count With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Accounts')
   count(@Query() params) {
@@ -38,6 +134,12 @@ export class AccountsController {
   @Get(':id')
   @ApiOperation({
     description: 'Get One Account By ID',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiTags('Accounts')
   findOne(@Param('id') id: string) {
@@ -58,6 +160,12 @@ export class AccountsController {
   @ApiOperation({
     description: 'Update One Account',
   })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
+  })
   @ApiBody({ type: AccountDto })
   @ApiTags('Accounts')
   update(@Param('id') id: string, @Body() accountDto: AccountDto) {
@@ -67,6 +175,12 @@ export class AccountsController {
   @Delete('delete/:id')
   @ApiOperation({
     description: 'Delete One Account',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiBody({ type: AccountDto })
   @ApiTags('Accounts')

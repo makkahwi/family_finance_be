@@ -1,5 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
 import { FamilyDto } from './dto/family.dto';
 import { FamiliesService } from './families.service';
@@ -10,7 +19,55 @@ export class FamiliesController {
 
   @Get()
   @ApiOperation({
-    description: 'Get All Families List',
+    description: 'Get All Families List With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Families')
   findAll(@Query() params) {
@@ -19,7 +76,55 @@ export class FamiliesController {
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Families List Count',
+    description: 'Get All Families List Count With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Families')
   count(@Query() params) {
@@ -29,6 +134,12 @@ export class FamiliesController {
   @Get(':id')
   @ApiOperation({
     description: 'Get One Family By ID',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiTags('Families')
   findOne(@Param('id') id: string) {
@@ -49,6 +160,12 @@ export class FamiliesController {
   @ApiOperation({
     description: 'Update One Family',
   })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
+  })
   @ApiBody({ type: FamilyDto })
   @ApiTags('Families')
   update(@Param('id') id: string, @Body() familyDto: FamilyDto) {
@@ -58,6 +175,12 @@ export class FamiliesController {
   @Delete('delete/:id')
   @ApiOperation({
     description: 'Delete One Family',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiBody({ type: FamilyDto })
   @ApiTags('Families')

@@ -1,5 +1,14 @@
-import { Body, Controller, Delete, Get, Param, Post, Put, Query } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
 import { RecordDto } from './dto/record.dto';
 import { RecordsService } from './records.service';
@@ -10,7 +19,55 @@ export class RecordsController {
 
   @Get()
   @ApiOperation({
-    description: 'Get All Records List',
+    description: 'Get All Records List With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Records')
   findAll(@Query() params) {
@@ -19,7 +76,55 @@ export class RecordsController {
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Records List Count',
+    description: 'Get All Records List Count With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Records')
   count(@Query() params) {
@@ -29,6 +134,12 @@ export class RecordsController {
   @Get(':id')
   @ApiOperation({
     description: 'Get One Record By ID',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiTags('Records')
   findOne(@Param('id') id: string) {
@@ -49,6 +160,12 @@ export class RecordsController {
   @ApiOperation({
     description: 'Update One Record',
   })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
+  })
   @ApiBody({ type: RecordDto })
   @ApiTags('Records')
   update(@Param('id') id: string, @Body() recordDto: RecordDto) {
@@ -58,6 +175,12 @@ export class RecordsController {
   @Delete('delete/:id')
   @ApiOperation({
     description: 'Delete One Record',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiBody({ type: RecordDto })
   @ApiTags('Records')

@@ -8,7 +8,7 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { ApiBody, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBody, ApiOperation, ApiParam, ApiTags } from '@nestjs/swagger';
 
 import { CategoriesService } from './categories.service';
 import { CategoryDto } from './dto/category.dto';
@@ -19,7 +19,55 @@ export class CategoriesController {
 
   @Get()
   @ApiOperation({
-    description: 'Get All Categories List',
+    description: 'Get All Categories List With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Categories')
   findAll(@Query() params) {
@@ -28,7 +76,55 @@ export class CategoriesController {
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Categories List Count',
+    description: 'Get All Categories List Count With Optional Filter Params',
+  })
+  @ApiParam({
+    name: 'propertyKey_bte',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_bt',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with bigger than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ste',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than or equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_st',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones with smaller than given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_ne',
+    type: Number,
+    required: false,
+    description:
+      'Filter list by property key values to return ones that not equal given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_lk',
+    type: String,
+    required: false,
+    description:
+      'Filter list by property key values to return ones like given value(s)',
+  })
+  @ApiParam({
+    name: 'propertyKey_sort',
+    type: String,
+    required: false,
+    description: 'Sort list by property key values ("asc" or "desc")',
   })
   @ApiTags('Categories')
   count(@Query() params) {
@@ -38,6 +134,12 @@ export class CategoriesController {
   @Get(':id')
   @ApiOperation({
     description: 'Get One Category By ID',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiTags('Categories')
   findOne(@Param('id') id: string) {
@@ -58,6 +160,12 @@ export class CategoriesController {
   @ApiOperation({
     description: 'Update One Category',
   })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
+  })
   @ApiBody({ type: CategoryDto })
   @ApiTags('Categories')
   update(@Param('id') id: string, @Body() categoryDto: CategoryDto) {
@@ -67,6 +175,12 @@ export class CategoriesController {
   @Delete('delete/:id')
   @ApiOperation({
     description: 'Delete One Category',
+  })
+  @ApiParam({
+    name: 'id',
+    type: String,
+    required: true,
+    description: 'Uuid',
   })
   @ApiBody({ type: CategoryDto })
   @ApiTags('Categories')
