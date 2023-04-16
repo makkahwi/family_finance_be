@@ -399,3 +399,4 @@ dist
 
 yarn.lock
 /build
+/data
