@@ -400,3 +400,4 @@ dist
 yarn.lock
 /build
 /data
+sqlite
