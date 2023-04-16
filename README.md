@@ -3,7 +3,7 @@
 ## To Do
 
 - Find all Pagination
-- Create, update & delete many
+- Update & delete many
 - Files storage
 - Authentication
 - Authorization
@@ -14,8 +14,6 @@
   - Update Mine
   - Delete Mine
 - Handle error cases
-  - ID not found
-  - Missing required prop
   - Unauthorized
 - Notifications Generator
 - Audit Logs (User activity tracking)
@@ -46,6 +44,7 @@
 - relations
   - role
   - family
+  - records
 
 #### role
 
@@ -100,3 +99,4 @@
   - timestamp
 - relations
   - category
+  - user
