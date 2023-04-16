@@ -58,4 +58,11 @@ export class TransfersService {
       result: await this.transfersRepository.delete(id),
     });
   }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.transfersRepository.delete(ids),
+    });
+  }
 }

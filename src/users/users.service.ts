@@ -55,4 +55,11 @@ export class UsersService {
       result: await this.usersRepository.delete(id),
     });
   }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.usersRepository.delete(ids),
+    });
+  }
 }

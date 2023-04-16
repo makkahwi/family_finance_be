@@ -225,4 +225,17 @@ export class UsersController {
   remove(@Param('id') id: string) {
     return this.usersService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Users At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.usersService.removeMany(ids);
+  }
 }

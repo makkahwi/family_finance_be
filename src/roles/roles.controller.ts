@@ -225,4 +225,17 @@ export class RolesController {
   remove(@Param('id') id: string) {
     return this.rolesService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Roles At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.rolesService.removeMany(ids);
+  }
 }

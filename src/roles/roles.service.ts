@@ -58,4 +58,11 @@ export class RolesService {
       result: await this.rolesRepository.delete(id),
     });
   }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.rolesRepository.delete(ids),
+    });
+  }
 }

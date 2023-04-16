@@ -3,7 +3,7 @@
 ## To Do
 
 - Find all Pagination
-- Update & delete many
+- Update many endpoints
 - Files storage
 - Authentication
 - Authorization

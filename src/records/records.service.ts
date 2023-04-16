@@ -58,4 +58,11 @@ export class RecordsService {
       result: await this.recordsRepository.delete(id),
     });
   }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.recordsRepository.delete(ids),
+    });
+  }
 }

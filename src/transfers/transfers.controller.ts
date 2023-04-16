@@ -225,4 +225,17 @@ export class TransfersController {
   remove(@Param('id') id: string) {
     return this.transfersService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Transfers At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.transfersService.removeMany(ids);
+  }
 }
