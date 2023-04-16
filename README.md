@@ -2,8 +2,7 @@
 
 ## To Do
 
-- Find all Pagination
-- Update many endpoints
+- Build Admin Panel
 - Files storage
 - Authentication
 - Authorization
@@ -16,12 +15,17 @@
 - Handle error cases
   - Unauthorized
 - Notifications Generator
-- Audit Logs (User activity tracking)
+- User activity log
 - Add relations inclusion control to API calls
 - Add seed data to models
 - Add content localization
 - Emailing Service
 - PDF Generator
+
+## On Hold
+
+- Find all Pagination
+- Update many endpoints
 
 ## Technical Features
 
