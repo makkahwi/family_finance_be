@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { findRequest } from '../utils/functions';
+import { NotFoundHandler, findRequest } from '../utils/functions';
 import { FamilyDto } from './dto/family.dto';
 import { Family } from './entities/family.entity';
 
@@ -23,8 +23,14 @@ export class FamiliesService {
     return this.familiesRepository.count(findRequest({ relations, query }));
   }
 
-  findOne(id: string): Promise<Family> {
-    return this.familiesRepository.findOne({ where: { id }, relations });
+  async findOne(id: string) {
+    return NotFoundHandler({
+      action: 'find',
+      result: await this.familiesRepository.findOne({
+        where: { id },
+        relations,
+      }),
+    });
   }
 
   create(familyDto: FamilyDto) {
@@ -39,11 +45,17 @@ export class FamiliesService {
     return this.familiesRepository.save(batch);
   }
 
-  update(id: string, familyDto: FamilyDto) {
-    return this.familiesRepository.update(id, familyDto);
+  async update(id: string, familyDto: FamilyDto) {
+    return NotFoundHandler({
+      action: 'update',
+      result: await this.familiesRepository.update(id, familyDto),
+    });
   }
 
-  remove(id: string) {
-    return this.familiesRepository.delete(id);
+  async remove(id: string) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.familiesRepository.delete(id),
+    });
   }
 }
