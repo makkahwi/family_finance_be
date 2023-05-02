@@ -6,7 +6,7 @@ import { NotFoundHandler, findRequest } from '../utils/functions';
 import { UserDto } from './dto/user.dto';
 import { User } from './entities/user.entity';
 
-const relations = ['role', 'family'];
+const relations = ['role', 'family', 'notifications'];
 
 @Injectable()
 export class UsersService {
