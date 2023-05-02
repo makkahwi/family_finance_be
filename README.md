@@ -21,6 +21,7 @@
 - Add content localization
 - Emailing Service
 - PDF Generator
+- Turn into microservices
 
 ## On Hold
 
