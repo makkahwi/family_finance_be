@@ -9,6 +9,7 @@ import { RecordsModule } from './records/records.module';
 import { RolesModule } from './roles/roles.module';
 import { TransfersModule } from './transfers/transfers.module';
 import { UsersModule } from './users/users.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -16,6 +17,7 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     FamiliesModule,
     AccountsModule,
+    NotificationsModule,
     TransfersModule,
     CategoriesModule,
     RecordsModule,
