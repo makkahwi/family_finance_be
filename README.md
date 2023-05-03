@@ -20,6 +20,7 @@
 - Add seed data to models
 - Add content localization
 - Emailing Service
+- Third party login (Google, Microsoft)
 - PDF Generator
 - Turn into microservices
 
