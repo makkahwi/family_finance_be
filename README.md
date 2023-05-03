@@ -5,6 +5,7 @@
 - Build Admin Panel
 - Files storage
 - Authentication
+- Hash passwords with bcrypt
 - Authorization
 - "Mine" APIs
   - GetAll Mine
@@ -14,7 +15,6 @@
   - Delete Mine
 - Handle error cases
   - Unauthorized
-- Notifications Generator
 - User activity log
 - Add relations inclusion control to API calls
 - Add seed data to models
