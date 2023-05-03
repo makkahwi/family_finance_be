@@ -3,7 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { NotificationsService } from '../notifications/notifications.service';
-import { NotFoundHandler, findRequest } from '../utils/functions';
+import { findRequest, NotFoundHandler } from '../utils/functions';
 import { UserDto } from './dto/user.dto';
 import { User } from './entities/user.entity';
 
@@ -27,10 +27,13 @@ export class UsersService {
     return this.usersRepository.count(findRequest({ relations, query }));
   }
 
-  async findOne(id: string) {
+  async findOne(username: string) {
     return NotFoundHandler({
       action: 'find',
-      result: await this.usersRepository.findOne({ where: { id }, relations }),
+      result: await this.usersRepository.findOne({
+        where: { username },
+        relations,
+      }),
     });
   }
 
