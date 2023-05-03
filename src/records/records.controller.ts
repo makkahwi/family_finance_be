@@ -225,4 +225,17 @@ export class RecordsController {
   remove(@Param('id') id: string) {
     return this.recordsService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Records At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.recordsService.removeMany(ids);
+  }
 }

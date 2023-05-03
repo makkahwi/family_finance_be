@@ -6,6 +6,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { Category } from '../../categories/entities/category.entity';
+import { User } from '../../users/entities/user.entity';
 
 @Entity()
 export class Record {
@@ -24,4 +25,8 @@ export class Record {
   @ManyToOne(() => Category, (account) => account.records, { cascade: true })
   @JoinColumn({ name: 'category' })
   category: Category;
+
+  @ManyToOne(() => User, (user) => user.records, { cascade: true })
+  @JoinColumn({ name: 'category' })
+  user: User;
 }

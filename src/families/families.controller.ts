@@ -225,4 +225,17 @@ export class FamiliesController {
   remove(@Param('id') id: string) {
     return this.familiesService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Families At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.familiesService.removeMany(ids);
+  }
 }

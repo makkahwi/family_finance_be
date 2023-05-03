@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { findRequest } from '../utils/functions';
+import { NotFoundHandler, findRequest } from '../utils/functions';
 import { RoleDto } from './dto/role.dto';
 import { Role } from './entities/role.entity';
 
@@ -23,8 +23,14 @@ export class RolesService {
     return this.rolesRepository.count(findRequest({ relations, query }));
   }
 
-  findOne(id: string): Promise<Role> {
-    return this.rolesRepository.findOne({ where: { id }, relations });
+  async findOne(id: string) {
+    return NotFoundHandler({
+      action: 'find',
+      result: await this.rolesRepository.findOne({
+        where: { id },
+        relations,
+      }),
+    });
   }
 
   create(roleDto: RoleDto) {
@@ -39,11 +45,24 @@ export class RolesService {
     return this.rolesRepository.save(batch);
   }
 
-  update(id: string, roleDto: RoleDto) {
-    return this.rolesRepository.update(id, roleDto);
+  async update(id: string, roleDto: RoleDto) {
+    return NotFoundHandler({
+      action: 'update',
+      result: await this.rolesRepository.update(id, roleDto),
+    });
   }
 
-  remove(id: string) {
-    return this.rolesRepository.delete(id);
+  async remove(id: string) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.rolesRepository.delete(id),
+    });
+  }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.rolesRepository.delete(ids),
+    });
   }
 }

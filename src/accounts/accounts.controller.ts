@@ -225,4 +225,17 @@ export class AccountsController {
   remove(@Param('id') id: string) {
     return this.accountsService.remove(id);
   }
+
+  @Delete('delete-many')
+  @ApiOperation({
+    description: 'Delete Many Accounts At Once',
+  })
+  @ApiBody({ type: String, isArray: true })
+  @ApiOkResponse({
+    isArray: true,
+    type: String,
+  })
+  removeMany(@Body() ids: string[]) {
+    return this.accountsService.removeMany(ids);
+  }
 }

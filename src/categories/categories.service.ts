@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { findRequest } from '../utils/functions';
+import { NotFoundHandler, findRequest } from '../utils/functions';
 import { CategoryDto } from './dto/category.dto';
 import { Category } from './entities/category.entity';
 
@@ -23,8 +23,14 @@ export class CategoriesService {
     return this.categoriesRepository.count(findRequest({ relations, query }));
   }
 
-  findOne(id: string): Promise<Category> {
-    return this.categoriesRepository.findOne({ where: { id }, relations });
+  async findOne(id: string) {
+    return NotFoundHandler({
+      action: 'find',
+      result: await this.categoriesRepository.findOne({
+        where: { id },
+        relations,
+      }),
+    });
   }
 
   create(categoryDto: CategoryDto) {
@@ -39,11 +45,24 @@ export class CategoriesService {
     return this.categoriesRepository.save(batch);
   }
 
-  update(id: string, categoryDto: CategoryDto) {
-    return this.categoriesRepository.update(id, categoryDto);
+  async update(id: string, categoryDto: CategoryDto) {
+    return NotFoundHandler({
+      action: 'update',
+      result: await this.categoriesRepository.update(id, categoryDto),
+    });
   }
 
-  remove(id: string) {
-    return this.categoriesRepository.delete(id);
+  async remove(id: string) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.categoriesRepository.delete(id),
+    });
+  }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.categoriesRepository.delete(ids),
+    });
   }
 }

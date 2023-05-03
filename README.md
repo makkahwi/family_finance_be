@@ -2,10 +2,10 @@
 
 ## To Do
 
-- Find all Pagination
-- Create, update & delete many
+- Build Admin Panel
 - Files storage
 - Authentication
+- Hash passwords with bcrypt
 - Authorization
 - "Mine" APIs
   - GetAll Mine
@@ -14,16 +14,19 @@
   - Update Mine
   - Delete Mine
 - Handle error cases
-  - ID not found
-  - Missing required prop
   - Unauthorized
-- Notifications Generator
-- Audit Logs (User activity tracking)
+- User activity log
 - Add relations inclusion control to API calls
 - Add seed data to models
 - Add content localization
 - Emailing Service
 - PDF Generator
+- Turn into microservices
+
+## On Hold
+
+- Find all Pagination
+- Update many endpoints
 
 ## Technical Features
 
@@ -46,6 +49,7 @@
 - relations
   - role
   - family
+  - records
 
 #### role
 
@@ -100,3 +104,4 @@
   - timestamp
 - relations
   - category
+  - user

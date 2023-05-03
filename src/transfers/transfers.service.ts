@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
-import { findRequest } from '../utils/functions';
+import { NotFoundHandler, findRequest } from '../utils/functions';
 import { TransferDto } from './dto/transfer.dto';
 import { Transfer } from './entities/transfer.entity';
 
@@ -23,8 +23,14 @@ export class TransfersService {
     return this.transfersRepository.count(findRequest({ relations, query }));
   }
 
-  findOne(id: string): Promise<Transfer> {
-    return this.transfersRepository.findOne({ where: { id }, relations });
+  async findOne(id: string) {
+    return NotFoundHandler({
+      action: 'find',
+      result: await this.transfersRepository.findOne({
+        where: { id },
+        relations,
+      }),
+    });
   }
 
   create(transferDto: TransferDto) {
@@ -39,11 +45,24 @@ export class TransfersService {
     return this.transfersRepository.save(batch);
   }
 
-  update(id: string, transferDto: TransferDto) {
-    return this.transfersRepository.update(id, transferDto);
+  async update(id: string, transferDto: TransferDto) {
+    return NotFoundHandler({
+      action: 'update',
+      result: await this.transfersRepository.update(id, transferDto),
+    });
   }
 
-  remove(id: string) {
-    return this.transfersRepository.delete(id);
+  async remove(id: string) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.transfersRepository.delete(id),
+    });
+  }
+
+  async removeMany(ids: string[]) {
+    return NotFoundHandler({
+      action: 'delete',
+      result: await this.transfersRepository.delete(ids),
+    });
   }
 }

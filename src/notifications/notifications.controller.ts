@@ -16,17 +16,17 @@ import {
   ApiTags,
 } from '@nestjs/swagger';
 
-import { TransferDto } from './dto/transfer.dto';
-import { TransfersService } from './transfers.service';
+import { NotificationsService } from './notifications.service';
+import { NotificationDto } from './dto/notification.dto';
 
-@ApiTags('Transfers')
-@Controller('transfers')
-export class TransfersController {
-  constructor(private readonly transfersService: TransfersService) {}
+@ApiTags('Notifications')
+@Controller('notifications')
+export class NotificationsController {
+  constructor(private readonly notificationsService: NotificationsService) {}
 
   @Get()
   @ApiOperation({
-    description: 'Get All Transfers List With Optional Filter Params',
+    description: 'Get All Notifications List With Optional Filter Params',
   })
   @ApiParam({
     name: 'propertyKey_bte',
@@ -78,15 +78,15 @@ export class TransfersController {
   })
   @ApiOkResponse({
     isArray: true,
-    type: TransferDto,
+    type: NotificationDto,
   })
   findAll(@Query() params) {
-    return this.transfersService.findAll(params);
+    return this.notificationsService.findAll(params);
   }
 
   @Get('count')
   @ApiOperation({
-    description: 'Get All Transfers List Count With Optional Filter Params',
+    description: 'Get All Notifications List Count With Optional Filter Params',
   })
   @ApiParam({
     name: 'propertyKey_bte',
@@ -141,12 +141,12 @@ export class TransfersController {
     type: Number,
   })
   count(@Query() params) {
-    return this.transfersService.count(params);
+    return this.notificationsService.count(params);
   }
 
   @Get(':id')
   @ApiOperation({
-    description: 'Get One Transfer By ID',
+    description: 'Get One Notification By ID',
   })
   @ApiParam({
     name: 'id',
@@ -156,41 +156,41 @@ export class TransfersController {
   })
   @ApiOkResponse({
     isArray: false,
-    type: TransferDto,
+    type: NotificationDto,
   })
   findOne(@Param('id') id: string) {
-    return this.transfersService.findOne(id);
+    return this.notificationsService.findOne(id);
   }
 
   @Post('create')
   @ApiOperation({
-    description: 'Create One Transfer',
+    description: 'Create One Notification',
   })
-  @ApiBody({ type: TransferDto })
+  @ApiBody({ type: NotificationDto })
   @ApiOkResponse({
     isArray: false,
-    type: TransferDto,
+    type: NotificationDto,
   })
-  create(@Body() transferDto: TransferDto) {
-    return this.transfersService.create(transferDto);
+  create(@Body() notificationDto: NotificationDto) {
+    return this.notificationsService.create(notificationDto);
   }
 
   @Post('create-many')
   @ApiOperation({
-    description: 'Create Many Transfers At Once',
+    description: 'Create Many Notification At Once',
   })
-  @ApiBody({ type: TransferDto, isArray: true })
+  @ApiBody({ type: NotificationDto, isArray: true })
   @ApiOkResponse({
     isArray: true,
-    type: TransferDto,
+    type: NotificationDto,
   })
-  createMany(@Body() transferDtos: TransferDto[]) {
-    return this.transfersService.createMany(transferDtos);
+  createMany(@Body() notificationDtos: NotificationDto[]) {
+    return this.notificationsService.createMany(notificationDtos);
   }
 
   @Put('update/:id')
   @ApiOperation({
-    description: 'Update One Transfer',
+    description: 'Update One Notification',
   })
   @ApiParam({
     name: 'id',
@@ -198,18 +198,18 @@ export class TransfersController {
     required: true,
     description: 'Uuid',
   })
-  @ApiBody({ type: TransferDto })
+  @ApiBody({ type: NotificationDto })
   @ApiOkResponse({
     isArray: false,
-    type: TransferDto,
+    type: NotificationDto,
   })
-  update(@Param('id') id: string, @Body() transferDto: TransferDto) {
-    return this.transfersService.update(id, transferDto);
+  update(@Param('id') id: string, @Body() notificationDto: NotificationDto) {
+    return this.notificationsService.update(id, notificationDto);
   }
 
   @Delete('delete/:id')
   @ApiOperation({
-    description: 'Delete One Transfer',
+    description: 'Delete One Notification',
   })
   @ApiParam({
     name: 'id',
@@ -217,18 +217,18 @@ export class TransfersController {
     required: true,
     description: 'Uuid',
   })
-  @ApiBody({ type: TransferDto })
+  @ApiBody({ type: NotificationDto })
   @ApiOkResponse({
     isArray: false,
-    type: TransferDto,
+    type: NotificationDto,
   })
   remove(@Param('id') id: string) {
-    return this.transfersService.remove(id);
+    return this.notificationsService.remove(id);
   }
 
   @Delete('delete-many')
   @ApiOperation({
-    description: 'Delete Many Transfers At Once',
+    description: 'Delete Many Notifications At Once',
   })
   @ApiBody({ type: String, isArray: true })
   @ApiOkResponse({
@@ -236,6 +236,6 @@ export class TransfersController {
     type: String,
   })
   removeMany(@Body() ids: string[]) {
-    return this.transfersService.removeMany(ids);
+    return this.notificationsService.removeMany(ids);
   }
 }
